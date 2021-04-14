@@ -62,11 +62,16 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
       },
       trace_color: {
         type: jsPsych.plugins.parameterType.STRING,
-        pretty_name: 'Color of the trace',
+        pretty_name: 'Trace color',
         default: "color",
         description: 'Indicates the color to use for the trace, transparent is possible.'
       },
-
+      score_feedback: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Score feedback',
+        default: TRUE,
+        description: 'Presence or not of the score feedback.'
+      },
     }
   }
 
@@ -179,6 +184,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     	var lastRefresh = 0;
     	var currentRefresh = 0;
       var trace_color = trial.trace_color;
+      var score_feedback = trial.score_feedback;
 
 
     function line_tracing() {
@@ -340,7 +346,11 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     			ctx.lineTo(mouse.x, mouse.y);
     			ctx.stroke();
     			//remove score display during task :
-    			document.getElementById("status").innerHTML = "Rejoignez le cercle rouge en restant le plus possible sur les lignes de la figure. <br>Score = " + Math.round(score *100) +"% ";
+          if(score_feedback == TRUE) {
+      			document.getElementById("status").innerHTML = "Rejoignez le cercle rouge en restant le plus possible sur les lignes de la figure. <br>Score = " + Math.round(score *100) +"% ";
+          } else {
+            document.getElementById("status").innerHTML = "Rejoignez le cercle rouge en restant le plus possible sur les lignes de la figure. <br> &nbsp";
+          }
     			document.getElementByID("status").innerHTML = p[0]+p[1]+p[2];
 
     		} else {
@@ -370,7 +380,11 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     				//document.getElementById("status").innerHTML = "Finished with score = " + Math.round(score *100) + "%<BR> Click next to continue.";
 
     				//display "you have finished the task"
-    				document.getElementById("status").innerHTML = "Vous avez terminé cet essai avec le score suivant : "+ Math.round(score *100) + "%.<br> Cliquez sur la flèche verte en bas à droite pour continuer.";
+            if(score_feedback == TRUE) {
+      				document.getElementById("status").innerHTML = "Vous avez terminé cet essai avec le score suivant : "+ Math.round(score *100) + "%.<br> Cliquez sur la flèche verte en bas à droite pour continuer.";
+            } else {
+              document.getElementById("status").innerHTML = "Vous avez terminé cet essai.<br> Cliquez sur la flèche verte en bas à droite pour continuer.";
+            }
     			}
     		}
 
