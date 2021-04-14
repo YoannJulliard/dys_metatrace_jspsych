@@ -69,7 +69,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
       score_feedback: {
         type: jsPsych.plugins.parameterType.BOOL,
         pretty_name: 'Score feedback',
-        default: TRUE,
+        default: true,
         description: 'Presence or not of the score feedback.'
       },
     }
@@ -346,7 +346,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     			ctx.lineTo(mouse.x, mouse.y);
     			ctx.stroke();
     			//remove score display during task :
-          if(score_feedback == TRUE) {
+          if(score_feedback == true) {
       			document.getElementById("status").innerHTML = "Rejoignez le cercle rouge en restant le plus possible sur les lignes de la figure. <br>Score = " + Math.round(score *100) +"% ";
           } else {
             document.getElementById("status").innerHTML = "Rejoignez le cercle rouge en restant le plus possible sur les lignes de la figure. <br> &nbsp";
@@ -380,7 +380,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     				//document.getElementById("status").innerHTML = "Finished with score = " + Math.round(score *100) + "%<BR> Click next to continue.";
 
     				//display "you have finished the task"
-            if(score_feedback == TRUE) {
+            if(score_feedback == true) {
       				document.getElementById("status").innerHTML = "Vous avez terminé cet essai avec le score suivant : "+ Math.round(score *100) + "%.<br> Cliquez sur la flèche verte en bas à droite pour continuer.";
             } else {
               document.getElementById("status").innerHTML = "Vous avez terminé cet essai.<br> Cliquez sur la flèche verte en bas à droite pour continuer.";
