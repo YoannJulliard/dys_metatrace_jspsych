@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Study on Line Tracing Task | LPNC</title>
+
+        <!-- jsPsych core library and plugins -->
+      <script src="jspsych-6.3.0/jspsych.js"></script>
+      <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
+      <script src="jspsych-6.3.0/plugins/jspsych-image-keyboard-response.js"></script>
+      <script src="jspsych-6.3.0/plugins/jspsych-preload.js"></script>
+      <script src="jspsych-6.3.0/plugins/jspsych-call_function.js"></script>
+      <script src="jspsych-6.3.0/plugins/jspsych-html-button-response.js"></script>
+      <script src="jspsych-6.3.0/plugins/jspsych-survey-likert.js"></script>
+      <script src="jspsych-6.3.0/plugins/jspsych-fullscreen.js"></script>
+      <script src="jspsych-6.3.0/plugins/jspsych-survey-multi-choice.js"></script>
+      <script src="jspsych-6.3.0/plugins/jspsych-survey-text.js"></script>
+      <script src="jspsych-line-tracing.js"></script>
+      <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
+
+      <!-- Line tracing task -->
+      <script src="task/base64.js" type="text/javascript"></script>
+      <script src="task/canvas2image.js" type="text/javascript"></script>
+      <script src="task/jquery.js" type="text/javascript"></script>
+      <script src="task/color_trace.js" type="text/javascript"></script>
+
+  </head>
+  <body></body>
+
+  <script>
+
+
+
+/* welcome message */
+      var welcome = {
+        type: "html-keyboard-response",
+        stimulus: "Bienvenue dans ce jeu. Appuies sur n'importe quelle touche pour continuer."
+      };
+
+
+/* Switching to fullscreen */
+      var fullscreen = {
+        type: 'fullscreen',
+        message: 'Pour commencer ce jeu, appuies sur le bouton "plein écran" </br></br>',
+        button_label: 'Plein écran',
+        fullscreen_mode: true
+      };
+
+/* instructions trial */
+      var instructions_1 = {
+          type: "html-keyboard-response",
+          stimulus: `
+          <p>Dans ce jeu, tu vas devoir redessiner une figure grace à la souris de ton ordinateur.</p>
+          <p>Tu auras le modèle en haut, et tu devras redessiner cette figure en bas.<p>
+          <p>Appuies sur n'importe quelle touche pour continuer.</p>
+          `,
+            };
+
+
+      var instructions_2 = {
+          type: "html-keyboard-response",
+          stimulus: `
+          <p>Pour commencer le jeu, tu vas devoir cliquer sur le rond vert: c'est le point de départ.</p>
+          <p>Quand tu auras cliqué, un rond rouge va apparaître : c'est le point d'arrivée. </p>
+          <p>Ton but sera de redessiner le modèle situé en haut dans le rectangle du bas.</p>
+          <p>Le but est d'arriver sur le point rouge en redessinant le mieux possible la figure.</p>
+          <p>Plus tu redessineras la figure correctement, plus tu gagneras des points. Le but est de gagner le plus de points possible.<p>
+          <p>Appuies sur n'importe quelle touche pour commencer le jeu.</p>
+          `,
+            };
+
+
+/* Line tracing task */
+
+// defining the timeline variables
+
+var line_tracing_variables = [
+  {figure_number: 1, },
+  // {figure_number: 1, },
+  // {figure_number: 2, },
+  // {figure_number: 3, },
+];
+
+
+      var display_canvas = {
+        type: "jspsych-line-tracing",
+        figure_number: jsPsych.timelineVariable('figure_number'),
+        stimulus: ` <p>stimulus</p>
+        `,
+        prompt: '<p>Press "y" key to begin.</p>',
+        choices: ['y'],
+        data: {},
+        on_finish: function(data){
+          data_score = data.score * 100;
+          data_score_falsed = data_score * 0.9;
+          data_score_2d = data_score.toFixed(2);
+          data_score_falsed_2d = data_score_falsed.toFixed(2);
+        }
+      };
+
+/* two alternative force choice */
+    var twoafc = {
+      type: 'html-button-response',
+      stimulus: '<p>Which one is your score?</p>',
+      choices: [,],
+      prompt: "<p></p>",
+      on_start: function(twoafc){
+        twoafc.choices[0] = data_score_2d + "%";
+        twoafc.choices[1] = data_score_falsed_2d + "%";
+      }
+    };
+
+
+/* confidence scale */
+    var scale = [
+      "50 - I guess the answer ",
+      "60",
+      "70",
+      "80",
+      "90",
+      "100 - I'm very confident in my answer"
+    ];
+
+    var confidence = {
+      type: 'survey-likert',
+      questions: [
+      {prompt: "How confident are you in your response?", labels: scale}
+      ]
+    };
+
+
+// Looping the procedure using timeline variables
+
+var line_tracing_procedure = {
+  timeline: [
+    display_canvas,
+    twoafc,
+    confidence,
+  ],
+  timeline_variables: line_tracing_variables,
+  randomize_order: true,
+  sample: {
+          // without replacement: once a figure is picked, it cannot be picked again
+          type: 'without-replacement',
+          // number of trials of the procedure
+          size: 3,
+      }
+};
+
+
+
+/*End of the line tracing task*/
+
+    var end_task = {
+      type: "html-keyboard-response",
+      stimulus: `
+        <p>The line tracing task is now completed.</p>
+        <p>We will now ask you some demographic questions.</p>
+        <p>Press any key to begin.</p>
+        `,
+    };
+
+
+/* Demographic questions*/
+
+    var age = {
+       type: 'survey-text',
+       questions: [{prompt: "How old are you?"}],
+     };
+
+    var sex = {
+     type: 'survey-multi-choice',
+     questions: [{prompt: "Please indicate your sex:", options: ["Male", "Female", "Other"], required: true, horizontal: true}],
+     };
+
+
+    var comments = {
+        type: 'survey-text',
+        questions: [{prompt: "Do you have comments regarding this study? [Optional]"}],
+      };
+
+/*End of full screen*/
+
+        var fullscreen_exit = {
+            type: 'fullscreen',
+            fullscreen_mode: false
+          };
+
+/*End of study*/
+
+    var ending = {
+        type: "html-keyboard-response",
+        stimulus: "This study is over. We thank you for participating in this study. In this study, we were interested in ..."
+      };
+
+
+/* create timeline */
+    var timeline = [];
+    timeline.push(welcome,
+                  //fullscreen,
+                  //instructions_1,
+                  //instructions_2,
+                  // display_canvas,
+                  // twoafc,
+                  // confidence,
+                  line_tracing_procedure,
+                  // end_task,
+                  // age,
+                  // sex,
+                  // comments,
+                  //fullscreen_exit,
+                  ending);
+
+
+  /* start the experiment */
+      jsPsych.init({
+        timeline: timeline,
+        on_finish: function(){
+          jsPsych.data.displayData();
+        }
+        });
+
+
+
+   </script>
+</html>
