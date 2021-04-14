@@ -60,6 +60,12 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
         default: 0,
         description: 'Indicates the figure number to be called.'
       },
+      trace_color: {
+        type: jsPsych.plugins.parameterType.STRING,
+        pretty_name: 'Color of the trace',
+        default: "color",
+        description: 'Indicates the color to use for the trace, transparent is possible.'
+      },
 
     }
   }
@@ -172,6 +178,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     	var endTime = 0;
     	var lastRefresh = 0;
     	var currentRefresh = 0;
+      var trace_color = trial.trace_color;
 
 
     function line_tracing() {
@@ -310,19 +317,25 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     			endTime = new Date();
     			timeDiff = (endTime - startTime)/1000;
 
-    			//trace in transparent
-    			// if (inline) {
-    			// 	ctx.strokeStyle = '#ffffff00';
-    			// } else {
-    			// 	ctx.strokeStyle = '#ffffff00';
-    			// }
 
-    			//trace in color: red
-    			if (inline) {
-    				ctx.strokeStyle = 'green';
-    			} else {
-    				ctx.strokeStyle = 'red';
-    			}
+          // color of the trace as function of trace_color var
+          if(trace_color == "transparent") {
+      			//trace in transparent
+      			if (inline) {
+      				ctx.strokeStyle = '#ffffff00';
+      			  } else {
+        				ctx.strokeStyle = '#ffffff00';
+      			  }
+            } else {
+                if (trace_color == "color") {
+            			//trace in color: red
+            			if (inline) {
+            				ctx.strokeStyle = 'green';
+            			} else {
+            				ctx.strokeStyle = 'red';
+            			}
+               }
+           }
 
     			ctx.lineTo(mouse.x, mouse.y);
     			ctx.stroke();

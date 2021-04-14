@@ -37,7 +37,7 @@
       };
 
 
-/* Switching to fullscreen */
+/* switching to fullscreen */
       var fullscreen = {
         type: 'fullscreen',
         message: 'Pour commencer ce jeu, appuies sur le bouton "plein écran" </br></br>',
@@ -81,23 +81,23 @@ var line_tracing_variables = [
 ];
 
 
-      var display_canvas = {
-        type: "jspsych-line-tracing",
-        figure_number: jsPsych.timelineVariable('figure_number'),
-        stimulus: ` <p>stimulus</p>
-        `,
-        prompt: '<p>Press "y" key to begin.</p>',
-        choices: ['y'],
-        data: {},
-        on_finish: function(data){
-          data_score = data.score * 100;
-          data_score_falsed = data_score * 0.9;
-          data_score_2d = data_score.toFixed(2);
-          data_score_falsed_2d = data_score_falsed.toFixed(2);
-        }
-      };
+var display_canvas = {
+  type: "jspsych-line-tracing",
+  figure_number: jsPsych.timelineVariable('figure_number'),
+  trace_color: "color",
+  stimulus: `<p>stimulus</p>`,
+  prompt: '<p>Press "y" key to begin.</p>',
+  choices: ['y'],
+  data: {},
+  on_finish: function(data){
+  data_score = data.score * 100;
+  data_score_falsed = data_score * 0.9;
+  data_score_2d = data_score.toFixed(2);
+  data_score_falsed_2d = data_score_falsed.toFixed(2);
+}
+};
 
-/* two alternative force choice */
+/* Two alternative force choice */
     var twoafc = {
       type: 'html-button-response',
       stimulus: '<p>Which one is your score?</p>',
@@ -110,7 +110,7 @@ var line_tracing_variables = [
     };
 
 
-/* confidence scale */
+/* Confidence scale */
     var scale = [
       "50 - I guess the answer ",
       "60",
