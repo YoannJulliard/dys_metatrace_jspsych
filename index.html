@@ -73,15 +73,65 @@
 
 // defining the timeline variables
 
-var line_tracing_variables = [
+var training_feedback_stimuli = [
+  // {figure_number: 0, },
   {figure_number: 1, },
-  // {figure_number: 1, },
   // {figure_number: 2, },
   // {figure_number: 3, },
 ];
 
+var training_score_feedback_stimuli = [
+  // {figure_number: 1, },
+  // {figure_number: 1, },
+  {figure_number: 2, },
+  // {figure_number: 3, },
+];
 
-var display_canvas = {
+var test_stimuli = [
+  // {figure_number: 1, },
+  // {figure_number: 1, },
+  // {figure_number: 2, },
+  {figure_number: 3, },
+];
+
+// 1: training phase with visual and score feedback
+var training_feedback = {
+  type: "jspsych-line-tracing",
+  figure_number: jsPsych.timelineVariable('figure_number'),
+  trace_color: "color",
+  score_feedback: true,
+  stimulus: `<p>stimulus</p>`,
+  prompt: '<p>Press "y" key to begin.</p>',
+  choices: ['y'],
+  data: {},
+  on_finish: function(data){
+  data_score = data.score * 100;
+  data_score_falsed = data_score * 0.9;
+  data_score_2d = data_score.toFixed(2);
+  data_score_falsed_2d = data_score_falsed.toFixed(2);
+}
+};
+
+// 2: training phase with score feedback only (no visual feedback)
+var training_score_feedback = {
+  type: "jspsych-line-tracing",
+  figure_number: jsPsych.timelineVariable('figure_number'),
+  trace_color: "transparent",
+  score_feedback: true,
+  stimulus: `<p>stimulus</p>`,
+  prompt: '<p>Press "y" key to begin.</p>',
+  choices: ['y'],
+  data: {},
+  on_finish: function(data){
+  data_score = data.score * 100;
+  data_score_falsed = data_score * 0.9;
+  data_score_2d = data_score.toFixed(2);
+  data_score_falsed_2d = data_score_falsed.toFixed(2);
+}
+};
+
+// 3: test phase : without feedback
+var test_phase = {
   type: "jspsych-line-tracing",
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "transparent",
@@ -129,15 +179,50 @@ var display_canvas = {
     };
 
 
-// Looping the procedure using timeline variables
+/* Looping the procedure using timeline variables */
 
-var line_tracing_procedure = {
+// 1: training phase with visual and score feedback
+var training_feedback_procedure = {
   timeline: [
-    display_canvas,
+    training_feedback,
     twoafc,
     confidence,
   ],
-  timeline_variables: line_tracing_variables,
+  timeline_variables: training_feedback_stimuli,
+  randomize_order: true,
+  sample: {
+          // without replacement: once a figure is picked, it cannot be picked again
+          type: 'without-replacement',
+          // number of trials of the procedure
+          size: 3,
+  }
+};
+
+// 2: training phase with score feedback only (no visual feedback)
+var training_score_feedback_procedure = {
+  timeline: [
+    training_score_feedback,
+    twoafc,
+    confidence,
+  ],
+  timeline_variables: training_score_feedback_stimuli,
+  randomize_order: true,
+  sample: {
+          // without replacement: once a figure is picked, it cannot be picked again
+          type: 'without-replacement',
+          // number of trials of the procedure
+          size: 3,
+  }
+};
+
+// 3: test phase : without feedback
+var test_procedure = {
+  timeline: [
+    test_phase,
+    twoafc,
+    confidence,
+  ],
+  timeline_variables: test_stimuli,
   randomize_order: true,
   sample: {
           // without replacement: once a figure is picked, it cannot be picked again
