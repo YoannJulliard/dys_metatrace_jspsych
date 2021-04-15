@@ -97,67 +97,34 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
 
     var materials = {
       'file_names' : [
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/chemin2.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s0e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/T0h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/T1e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/T1h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/T2e.png",
-          //5
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/T2h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/p1e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/p1h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/p2e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/p2h.png",
-          //10
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/r5e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/r5h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/r2e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/r2h.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q4e.png",
-          //15
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q4h.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q1e.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q1h.png",
+          //5
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s15e.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s15h.png",
-          //20
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s30e.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s30h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/T3e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/T3h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/T4e.png",
-          //25
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/T4h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/p3e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/p3h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/p4e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/p4h.png",
-          //30
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/r1e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/r1h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/r3e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/r3h.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q2e.png",
-          //35
+          //10
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q2h.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q3e.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q3h.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s45e.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s45h.png",
-          //40
+          //15
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s75e.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s75h.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s0h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/T110e.png",
-
         ],
 
-        //							 0												5												 10												15											  20											25											 30												35											 40
-            'xstarts' : [55, 57,  326, 49, 342, 153, 239,  45,  383, 135,  13, 290,  46,  16,	210,  92, 158, 360,  51, 331,  41,  55, 316, 202, 104, 163, 259, 308, 357,  39,  10,  16, 326, 111, 218,  36,  41,  232, 232, 349, 136, 206, 128,  57,  55],
-            'ystarts' : [237, 146, 236, 40, 253,  51, 233, 184,  258,  19,  40, 183,  41, 285, 221, 283, 283,   8, 105, 141, 141,  46,  45, 152,  42, 256, 258, 248, 131, 123,  20, 283, 100, 255, 250,  69,  41,  223,  39, 218, 218, 292, 292, 146, 107],
-            'xends' :   [349, 358,  67, 340, 52, 299,  93, 383,   45,  13, 135,  46, 290, 210,  16, 158,  92,  51, 363,  41, 329, 314,  55, 289, 191, 259, 163, 352, 309,  10,  39, 332,  16, 223, 109,  40,  36,   28,  28, 135, 345, 128, 206, 358, 336],
-            'yends' :   [34, 146,  57, 205, 88, 176, 118,  11,   86, 253, 275, 169,  28,  72,   8,  26,  26, 152, 250,  63,  63, 195, 195, 251, 142,  36,  37, 147,  29, 284, 188, 270,  93,  16,  16, 270, 241,   39, 220,   6,   6,   2,   2, 146, 164]
+        //							 0												5												 10												15
+            'xstarts' : [57,  92,  158, 360, 51,  331, 41,  55,  316, 36,  41,  232, 232, 349, 136, 206, 128,  57],
+            'ystarts' : [146, 283, 283, 8,   105, 141, 141, 46,  45,  69,  41,  223, 39,  218, 218, 292, 292, 146],
+            'xends' :   [358, 158, 92,  51,  363, 41,  329, 314, 55,  40,  36,  28,  28,  135, 345, 128, 206, 358],
+            'yends' :   [146, 26,  26,  152, 250, 63,  63,  195, 195, 270, 241, 39,  220, 6,   6,   2,   2,   146]
     		}
 
 
