@@ -98,33 +98,27 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     var materials = {
       'file_names' : [
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s0e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q4e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q4h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q1e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q1h.png",
-          //5
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s15e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s15h.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s30e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s30h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q2e.png",
-          //10
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q2h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q3e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q3h.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s45e.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s45h.png",
-          //15
+          //5
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s75e.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s75h.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s0h.png",
+          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q4e.png",
+          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q1e.png",
+          //10
+          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q2e.png",
+          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q3e.png",
+
         ],
 
-        //							 0												5												 10												15
-            'xstarts' : [57,  92,  158, 360, 51,  331, 41,  55,  316, 36,  41,  232, 232, 349, 136, 206, 128,  57],
-            'ystarts' : [146, 283, 283, 8,   105, 141, 141, 46,  45,  69,  41,  223, 39,  218, 218, 292, 292, 146],
-            'xends' :   [358, 158, 92,  51,  363, 41,  329, 314, 55,  40,  36,  28,  28,  135, 345, 128, 206, 358],
-            'yends' :   [146, 26,  26,  152, 250, 63,  63,  195, 195, 270, 241, 39,  220, 6,   6,   2,   2,   146]
+        //							 0												5												 10
+            'xstarts' : [57,  331, 55,  349, 136, 206, 128, 57,  92,  360,  36,  232],
+            'ystarts' : [146, 141, 46,  218, 218, 292, 292, 146, 283, 8,    69,  223],
+            'xends' :   [358, 41,  314, 135, 345, 128, 206, 358, 158, 51,   40,  28],
+            'yends' :   [146, 63,  195, 6,   6,   2,   2,   146, 26,  152,  270, 39]
     		}
 
 
