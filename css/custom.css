@@ -1,0 +1,15 @@
+@font-face {
+    font-family: Smart_Kid;
+    src: url("Smart_Kid.otf");
+}
+
+.custom-font {
+	font-family: 'Smart_Kid';
+	font-size: 30px;
+}
+
+.continue-instructions {
+	font-family: "Smart_Kid";
+	font-size:25px;
+	color: grey;
+}

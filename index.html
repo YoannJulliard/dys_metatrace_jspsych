@@ -22,6 +22,7 @@
       <script src="task/canvas2image.js" type="text/javascript"></script>
       <script src="task/jquery.js" type="text/javascript"></script>
       <script src="task/color_trace.js" type="text/javascript"></script>
+      <link rel="stylesheet" href="css/custom.css"></link>
 
   </head>
   <body></body>
@@ -33,47 +34,84 @@
 /* welcome message */
       var welcome = {
         type: "html-keyboard-response",
-        stimulus: "Bienvenue dans ce jeu. Appuies sur n'importe quelle touche pour continuer."
+        stimulus: `
+        <p class = "custom-font">Bonjour ! Bienvenue dans ce jeu. <br>
+        <img src = "img/milo_hello.gif", height="150", width="150", align = center>
+        <br>
+        Je m'appelle Milo et c'est moi qui vais te guider dans cette nouvelle aventure !</p>
+        <br>
+        <p class = "continue-instructions">Appuies sur n'importe quelle touche pour me suivre.</p>
+        `,
       };
 
 
 /* switching to fullscreen */
       var fullscreen = {
         type: 'fullscreen',
-        message: 'Pour commencer ce jeu, appuies sur le bouton "plein écran" </br></br>',
-        button_label: 'Plein écran',
+        message: `<p class = "custom-font">Pour commencer ce jeu, cliques sur le bouton "Commencer"</p>`,
+        button_label: 'Commencer',
         fullscreen_mode: true
       };
 
 /* instructions trial */
+
+      //general1
       var instructions_1 = {
           type: "html-keyboard-response",
           stimulus: `
-          <p>Dans ce jeu, tu vas devoir redessiner une figure grace à la souris de ton ordinateur.</p>
-          <p>Tu auras le modèle en haut, et tu devras redessiner cette figure en bas.<p>
-          <p>Appuies sur n'importe quelle touche pour continuer.</p>
+          <p class = "custom-font">Dans ce jeu, un dessin va apparaître sur l'écran et tu devras le redessiner le plus précisément possible en bougeant ta souris.</p>
+          <p class = "continue-instructions">Appuies sur n'importe quelle touche pour continuer.</p>
+          <img src = "img/image.png", height="100", width="150">
           `,
             };
 
-
+      //general2
       var instructions_2 = {
           type: "html-keyboard-response",
           stimulus: `
-          <p>Pour commencer le jeu, tu vas devoir cliquer sur le rond vert: c'est le point de départ.</p>
-          <p>Quand tu auras cliqué, un rond rouge va apparaître : c'est le point d'arrivée. </p>
-          <p>Ton but sera de redessiner le modèle situé en haut dans le rectangle du bas.</p>
-          <p>Le but est d'arriver sur le point rouge en redessinant le mieux possible la figure.</p>
-          <p>Plus tu redessineras la figure correctement, plus tu gagneras des points. Le but est de gagner le plus de points possible.<p>
-          <p>Appuies sur n'importe quelle touche pour commencer le jeu.</p>
+          <p class = "custom-font">Pour commencer le jeu, tu vas devoir cliquer sur le rond vert: c'est le point de départ.</p>
+          <p class = "custom-font">Un rond rouge va alors apparaître : c'est le point d'arrivée. </p>
+          <p class = "custom-font">Le but est d'arriver sur le point rouge en redessinant le mieux possible le dessin.</p>
+          <p class = "custom-font">Plus tu resteras sur les lignes du dessin, plus tu gagneras des points. Le but est de gagner le plus de points possible.</p>
+          <p class = "continue-instructions">Appuies sur n'importe quelle touche pour commencer le jeu.</p>
           `,
             };
+
+      //training phase 1 : with both visual and score feedback
+      var instructions_all_feedback = {
+          type: "html-keyboard-response",
+          stimulus: `
+          <p class = "custom-font"> </p>
+          <p class = "continue-instructions">Appuies sur n'importe quelle touche pour commencer le jeu.</p>
+          `,
+            };
+
+
+      //training phase 2 : only score feedback
+      var instructions_score_feedback = {
+          type: "html-keyboard-response",
+          stimulus: `
+          <p class = "custom-font"> </p>
+          <p class = "continue-instructions">Appuies sur n'importe quelle touche pour commencer le jeu.</p>
+          `,
+            };
+
+      //test phase without feedback
+      var instructions_test = {
+          type: "html-keyboard-response",
+          stimulus: `
+          <p class = "custom-font"> </p>
+          <p class = "continue-instructions">Appuies sur n'importe quelle touche pour commencer le jeu.</p>
+          `,
+            };
+
 
 
 /* Line tracing task */
 
 // defining the timeline variables
 
-var training_feedback_stimuli = [
+var training_all_feedback_stimuli = [
   // {figure_number: 0, },
   {figure_number: 1, },
   // {figure_number: 2, },
@@ -95,7 +133,7 @@ var test_stimuli = [
 ];
 
 // 1: training phase with visual and score feedback
-var training_feedback = {
+var training_all_feedback = {
   type: "jspsych-line-tracing",
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "color",
@@ -151,7 +189,7 @@ var test_phase = {
 /* Two alternative force choice */
     var twoafc = {
       type: 'html-button-response',
-      stimulus: '<p>Which one is your score?</p>',
+      stimulus: '<p>Parmi les deux scores suivants, à ton avis, lequel est le tien?</p>',
       choices: [,],
       prompt: "<p></p>",
       on_start: function(twoafc){
@@ -163,18 +201,18 @@ var test_phase = {
 
 /* Confidence scale */
     var scale = [
-      "50 - I guess the answer ",
+      "50 - J'ai répondu au hasard ",
       "60",
       "70",
       "80",
       "90",
-      "100 - I'm very confident in my answer"
+      "100 - Je suis sûr(e) de ma réponse"
     ];
 
     var confidence = {
       type: 'survey-likert',
       questions: [
-      {prompt: "How confident are you in your response?", labels: scale}
+      {prompt: "A quel point es-tu sûr de ta réponse?", labels: scale}
       ]
     };
 
@@ -182,13 +220,13 @@ var test_phase = {
 /* Looping the procedure using timeline variables */
 
 // 1: training phase with visual and score feedback
-var training_feedback_procedure = {
+var training_all_feedback_procedure = {
   timeline: [
-    training_feedback,
+    training_all_feedback,
     twoafc,
     confidence,
   ],
-  timeline_variables: training_feedback_stimuli,
+  timeline_variables: training_all_feedback_stimuli,
   randomize_order: true,
   sample: {
           // without replacement: once a figure is picked, it cannot be picked again
@@ -239,9 +277,9 @@ var test_procedure = {
     var end_task = {
       type: "html-keyboard-response",
       stimulus: `
-        <p>The line tracing task is now completed.</p>
-        <p>We will now ask you some demographic questions.</p>
-        <p>Press any key to begin.</p>
+        <p class = "custom-font">Bravo ! Tu as terminé le jeu et tu t'en es très bien sorti ! Merci d'avoir joué avec moi.</p>
+        <p class = "custom-font">Avant de partir, j'ai quelques questions pour toi !</p>
+        <p >Appuies sur n'importe quelle touche pour continuer.</p>
         `,
     };
 
@@ -250,19 +288,24 @@ var test_procedure = {
 
     var age = {
        type: 'survey-text',
-       questions: [{prompt: "How old are you?"}],
+       questions: [{prompt: "Quel âge as-tu ?"}],
      };
 
     var sex = {
      type: 'survey-multi-choice',
-     questions: [{prompt: "Please indicate your sex:", options: ["Male", "Female", "Other"], required: true, horizontal: true}],
+     questions: [{prompt: "Es-tu", options: ["Un garçon", "Une fille", "Autre"], required: true, horizontal: true}],
      };
 
+     var difficulty = {
+      type: 'survey-multi-choice',
+      questions: [{prompt: "Comment as-tu trouvé ce jeu?", options: ["Très difficile", "Difficile", "Facile", "Très facile"], required: true, horizontal: true}],
+      };
 
     var comments = {
         type: 'survey-text',
-        questions: [{prompt: "Do you have comments regarding this study? [Optional]"}],
+        questions: [{prompt: "Cette question s'adresse aux parents. Avez-vous des remarques concernant cet exercice (difficulté de la tâche, motivation de votre enfant...)"}],
       };
+
 
 /*End of full screen*/
 
@@ -275,25 +318,27 @@ var test_procedure = {
 
     var ending = {
         type: "html-keyboard-response",
-        stimulus: "This study is over. We thank you for participating in this study. In this study, we were interested in ..."
-      };
+        stimulus: `
+        <p class = "custom-font">Tu as terminé ce jeu et tu t'en es très bien sorti.</p>
+        <p class = "custom-font">Bravo et merci beaucoup d'avoir joué avec moi !</p>
+        <p class = "custom-font">A bientôt peut être.</p>
+        <img src = "img/milo_hello.gif", height="150", width="150", align = center>
+      `};
 
 
 /* create timeline */
     var timeline = [];
     timeline.push(welcome,
-                  //fullscreen,
-                  //instructions_1,
+                  fullscreen,
+                  instructions_1,
                   //instructions_2,
-                  // display_canvas,
-                  // twoafc,
-                  // confidence,
-                  training_feedback_procedure,
-                  training_score_feedback_procedure,
-                  test_procedure,
+                  //training_all_feedback_procedure,
+                  //training_score_feedback_procedure,
+                  //test_procedure,
                   // end_task,
                   // age,
                   // sex,
+                  // difficulty,
                   // comments,
                   //fullscreen_exit,
                   ending);
