@@ -63,7 +63,8 @@
           stimulus: `
           <p class = "custom-font">Un dessin va apparaître sur l'écran.</p>
           <p class = "custom-font">Tu devras le redessiner le plus précisément possible en bougeant ta souris.</p>
-          <img src = "img/leo_showing.gif", height="200", width="250">
+          <img src = "img/leo_showing.gif", height="150", width="150">
+          <img src = "img/instructions1.png", height="200", width="250">
           <p class = "continue-instructions">Appuies sur la flèche pour continuer.</p>
           `,
             };
@@ -73,8 +74,10 @@
           type: "html-button-response",
           choices: ["&#10095;"],
           stimulus: `
-          <p class = "custom-font">Pour commencer le jeu, tu vas devoir cliquer sur le rond vert: c'est le point de départ.</p>
+          <p class = "custom-font">Pour commencer le jeu, tu vas devoir cliquer sur le rond vert : c'est le point de départ.</p>
+          <img src = "img/instructions1bis.png", height="180", width="230">
           <p class = "custom-font">Un rond rouge va alors apparaître : c'est le point d'arrivée. </p>
+          <img src = "img/instructions2bis.png", height="180", width="300">
           <p class = "custom-font">Le but est d'arriver sur le rond rouge en restant le plus possible sur les lignes du dessin.</p>
           <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
@@ -87,7 +90,8 @@
           stimulus: `
           <p class = "custom-font">Plus tu resteras sur les lignes du dessin, plus tu gagneras des points.</p>
           <p class = "custom-font">Le but est de gagner le plus de points possible.</p>
-          <img src = "img/lea_points.gif", height="200", width="250">
+          <img src = "img/instructions3.png", height="200", width="250">
+          <img src = "img/lea_points.gif", height="150", width="150">
           <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
@@ -98,8 +102,8 @@
           choices: ["&#10095;"],
           stimulus: `
           <p class = "custom-font">Dans ce jeu, il y a aura trois niveaux.</p>
-          <p class = "custom-font">Commençons par le premier niveau ! </p>
-          <img src = "img/island4.png", height="200", width="200">
+          <p class = "custom-font">Commençons par le premier niveau ! Tu es prêt(e) ?</p>
+          <img src = "img/level1.png", height="309", width="553">
           <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
@@ -111,7 +115,7 @@
           stimulus: `
           <p class = "custom-font">Bravo ! Tu as fini le premier niveau.</p>
           <p class = "custom-font">Continuons avec le deuxième niveau ! </p>
-          <img src = "img/island3.png", height="200", width="200">
+          <img src = "img/level2.png", height="309", width="553">
           <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
@@ -122,22 +126,22 @@
           choices: ["&#10095;"],
           stimulus: `
           <p class = "custom-font">Bravo ! Tu as fini le deuxième niveau.</p>
-          <p class = "custom-font">Continuons avec le dernier niveau ! </p>
-          <img src = "img/island2.png", height="200", width="200">
+          <p class = "custom-font">Continuons avec le troisième et dernier niveau ! </p>
+          <img src = "img/level3.png", height="309", width="553">
           <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
 
 
       //training phase 1 : with both visual and score feedback
-      var instructions_all_feedback = {
-          type: "html-button-response",
-          choices: ["&#10095;"],
-          stimulus: `
-          <p class = "custom-font"> </p>
-          <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
-          `,
-            };
+      // var instructions_all_feedback = {
+      //     type: "html-button-response",
+      //     choices: ["&#10095;"],
+      //     stimulus: `
+      //     <p class = "custom-font"> </p>
+      //     <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
+      //     `,
+      //       };
 
 
       //training phase 2 : only score feedback
@@ -145,7 +149,10 @@
           type: "html-button-response",
           choices: ["&#10095;"],
           stimulus: `
-          <p class = "custom-font"> </p>
+          <p class = "custom-font"> A partir de maintenant, le jeu va se compliquer ! </p>
+          <p class = "custom-font"> Tu ne verras plus où tu es en train de dessiner ! </p>
+          <p class = "custom-font"> Essaies de rester le plus possible sur les lignes ! </p>
+          <img src = "img/instructions4.png", height="193", width="270">
           <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
@@ -155,7 +162,10 @@
           type: "html-button-response",
           choices: ["&#10095;"],
           stimulus: `
-          <p class = "custom-font"> </p>
+          <p class = "custom-font"> A partir de maintenant, le jeu va se compliquer ! </p>
+          <p class = "custom-font"> Tu ne verras plus où tu es en train de dessiner, et tu ne verras plus non plus ton score ! </p>
+          <p class = "custom-font"> Essaies de rester le plus possible sur les lignes ! </p>
+          <img src = "img/instructions5.png", height="180", width="270">
           <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
@@ -193,15 +203,15 @@ var training_all_feedback = {
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "color",
   score_feedback: true,
-  start_instructions: "Cliques sur le rond vert pour commencer !",
-  draw_instructions: "Rejoins le rond rouge en restant sur les lignes du dessin",
-  end_instructions: "Tu as fini ce dessin. Cliques sur la flèche pour continuer.",
+  start_instructions: `<p class = "custom-font">Cliques sur le rond vert pour commencer !</p>`,
+  draw_instructions: `<p class = "custom-font">Rejoins le rond rouge en restant sur les lignes du dessin</p>`,
+  end_instructions: `<p class = "custom-font">Tu as fini ce dessin. Bravo !</p>`,
   stimulus: `<p></p>`,
-  prompt: '<p>Press "y" key to begin.</p>',
+  prompt: '<p>Appuies sur "y" pour continuer.</p>',
   choices: ['y'],
   data: {},
   on_finish: function(data){
-  data_score = data.score * 100;
+  data_score = data.score * 10;
   data_score_falsed = data_score * 0.9;
   data_score_2d = data_score.toFixed(2);
   data_score_falsed_2d = data_score_falsed.toFixed(2);
@@ -213,16 +223,17 @@ var training_score_feedback = {
   type: "jspsych-line-tracing",
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "transparent",
-  score_feedback: true,
-  start_instructions: "Cliques sur le rond vert pour commencer !",
-  draw_instructions: "Rejoins le rond rouge en restant sur les lignes du dessin",
-  end_instructions: "Tu as fini ce dessin. Cliques sur la flèche pour continuer.",
+  score_feedback: false,
+  cursor_display: true,
+  start_instructions: `<p class = "custom-font">Cliques sur le rond vert pour commencer !</p>`,
+  draw_instructions: `<p class = "custom-font">Rejoins le rond rouge en restant sur les lignes du dessin</p>`,
+  end_instructions: `<p class = "custom-font">Tu as fini ce dessin. Bravo ! </p>`,
   stimulus: `<p></p>`,
-  prompt: '<p>Press "y" key to begin.</p>',
+  prompt: '<p>Appuies sur "y" pour continuer.</p>',
   choices: ['y'],
   data: {},
   on_finish: function(data){
-  data_score = data.score * 100;
+  data_score = data.score * 10;
   data_score_falsed = data_score * 0.9;
   data_score_2d = data_score.toFixed(2);
   data_score_falsed_2d = data_score_falsed.toFixed(2);
@@ -235,15 +246,15 @@ var test_phase = {
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "transparent",
   score_feedback: false,
-  start_instructions: "Cliques sur le rond vert pour commencer !",
-  draw_instructions: "Rejoins le rond rouge en restant sur les lignes du dessin",
-  end_instructions: "Tu as fini ce dessin. Cliques sur la flèche pour continuer.",
+  start_instructions: `<p class = "custom-font">Cliques sur le rond vert pour commencer !</p>`,
+  draw_instructions: `<p class = "custom-font">Rejoins le rond rouge en restant sur les lignes du dessin</p>`,
+  end_instructions: `<p class = "custom-font">Tu as fini ce dessin. Bravo !</p>`,
   stimulus: `<p></p>`,
-  prompt: '<p>Press "y" key to begin.</p>',
+  prompt: '<p>Appuies sur "y" pour continuer.</p>',
   choices: ['y'],
   data: {},
   on_finish: function(data){
-  data_score = data.score * 100;
+  data_score = data.score * 10;
   data_score_falsed = data_score * 0.9;
   data_score_2d = data_score.toFixed(2);
   data_score_falsed_2d = data_score_falsed.toFixed(2);
@@ -251,34 +262,45 @@ var test_phase = {
 };
 
 /* Two alternative force choice */
+
+    //2afc
     var twoafc = {
       type: 'html-button-response',
-      stimulus: '<p>Parmi les deux scores suivants, à ton avis, lequel est le tien?</p>',
+      stimulus: `
+      <p class = "custom-font"> Je vais maintenant te montrer deux scores : un seul des deux est le tien.</p>
+      <p class = "custom-font">A ton avis, lequel est le tien ? Cliques dessus !</p>
+      `,
       choices: [,],
       prompt: "<p></p>",
       on_start: function(twoafc){
-        twoafc.choices[0] = data_score_2d + "%";
-        twoafc.choices[1] = data_score_falsed_2d + "%";
+        twoafc.choices[0] = Math.round(data_score_2d);
+        twoafc.choices[1] = Math.round(data_score_falsed_2d);
       }
     };
 
 
 /* Confidence scale */
     var scale = [
-      "50 - J'ai répondu au hasard ",
-      "60",
-      "70",
-      "80",
-      "90",
-      "100 - Je suis sûr(e) de ma réponse"
+      "<p class = 'custom-scale'>0 <br> Pas du tout sûr(e) <br><br> <img src = 'img/conf_scale_0.png', height = 50px, width = 50px></p>",
+      "<p class = 'custom-scale'>1 <br> <br><br> <img src = 'img/conf_scale_1.png', height = 50px, width = 50px></p>",
+      "<p class = 'custom-scale'>2 <br> <br><br> <img src = 'img/conf_scale_2.png', height = 50px, width = 50px></p>",
+      "<p class = 'custom-scale'>3 <br> <br><br> <img src = 'img/conf_scale_3.png', height = 50px, width = 50px></p>",
+      "<p class = 'custom-scale'>4 <br> Très sûr(e) <br><br> <img src = 'img/conf_scale_4.png', height = 50px, width = 50px></p>",
+      // "<img src = "img/confidence_scale.png", height="600", width="200">",
     ];
 
+    //confidence training
     var confidence = {
       type: 'survey-likert',
       questions: [
-      {prompt: "A quel point es-tu sûr de ta réponse?", labels: scale}
+      {prompt: `
+        <p class = "custom-font">Maintenant, demandes-toi à quel point tu es sûr(e) que ta réponse est correcte.</p>
+        <p class = "custom-25px">Si tu n'es pas du tout sûr(e) de ta réponse, cliques sur "0".</p>
+        <p class = "custom-25px">Si tu es vraiment sûr(e) de ta réponse, cliques sur "4".</p>
+      `, labels: scale}
       ]
     };
+
 
 
 /* Looping the procedure using timeline variables */
@@ -303,6 +325,7 @@ var training_all_feedback_procedure = {
 // 2: training phase with score feedback only (no visual feedback)
 var training_score_feedback_procedure = {
   timeline: [
+    instructions_score_feedback,
     training_score_feedback,
     twoafc,
     confidence,
@@ -320,6 +343,7 @@ var training_score_feedback_procedure = {
 // 3: test phase : without feedback
 var test_procedure = {
   timeline: [
+    instructions_test,
     test_phase,
     twoafc,
     confidence,
@@ -343,7 +367,7 @@ var test_procedure = {
       choices: ["&#10095;"],
       stimulus: `
         <p class = "custom-font">Bravo ! Tu as terminé le jeu et tu t'en es très bien sorti ! Merci d'avoir joué avec moi.</p>
-        <img src = "img/island2.png", height="200", width="200">
+        <img src = "img/win.png", height="300", width="400">
         <p class = "custom-font">Avant de partir, j'ai quelques questions pour toi !</p>
         <p class = "continue-instructions">Appuies sur la flèche pour continuer.</p>
         `,
@@ -354,22 +378,26 @@ var test_procedure = {
 
     var age = {
        type: 'survey-text',
-       questions: [{prompt: "Quel âge as-tu ?"}],
+       questions: [{prompt: "<span class = 'custom-font'>Quel âge as-tu ?</span>"}],
      };
 
     var sex = {
      type: 'survey-multi-choice',
-     questions: [{prompt: "Es-tu", options: ["Un garçon", "Une fille", "Autre"], required: true, horizontal: true}],
+     questions: [{prompt: "<span class = 'custom-font'>Tu es </span>",
+     options: ["Un garçon", "Une fille", "Autre"],
+     required: true, horizontal: true}],
      };
 
      var difficulty = {
       type: 'survey-multi-choice',
-      questions: [{prompt: "Comment as-tu trouvé ce jeu?", options: ["Très difficile", "Difficile", "Facile", "Très facile"], required: true, horizontal: true}],
+      questions: [{prompt: "<span class = 'custom-font'>Comment as-tu trouvé ce jeu ? </span>",
+      options: ["Très difficile", "Difficile", "Facile", "Très facile"],
+      required: true, horizontal: true}],
       };
 
     var comments = {
-        type: 'survey-text',
-        questions: [{prompt: "Cette question s'adresse aux parents. Avez-vous des remarques concernant cet exercice (difficulté de la tâche, motivation de votre enfant...)"}],
+      type: 'survey-text',
+      questions: [{prompt: "<p class = 'custom-font'>Cette question s'adresse aux parents. Avez-vous des remarques concernant cet exercice (difficulté de la tâche, motivation de votre enfant...)</p>"}],
       };
 
 
@@ -385,8 +413,7 @@ var test_procedure = {
     var ending = {
         type: "html-keyboard-response",
         stimulus: `
-        <p class = "custom-font">Tu as terminé ce jeu et tu t'en es très bien sorti.</p>
-        <p class = "custom-font">Bravo et merci d'avoir joué avec moi !</p>
+        <p class = "custom-font">Merci d'être allé au bout !</p>
         <p class = "custom-font">A bientôt peut être.</p>
         <img src = "img/milo_hello.gif", height="150", width="150", align = center>
       `};
@@ -405,11 +432,11 @@ var test_procedure = {
                   training_score_feedback_procedure,
                   level3,
                   test_procedure,
-                  // end_task,
-                  // age,
-                  // sex,
-                  // difficulty,
-                  // comments,
+                  end_task,
+                  age,
+                  sex,
+                  difficulty,
+                  comments,
                   //fullscreen_exit,
                   ending);
 

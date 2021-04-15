@@ -90,6 +90,12 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
         default: "You finished this trial",
         description: 'End of the trial'
       },
+      cursor_display: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Cursor display',
+        default: false,
+        description: 'Display or not the cursor during the entire trial'
+      },
     }
   }
 
@@ -214,8 +220,8 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     		ctx.fillStyle = 'green';
     		ctx.fill();
     		//transparence du rond vert
-    	  ctx.globalAlpha=1;
-    	  document.getElementById("status").innerHTML = trial.start_instructions;
+    	  ctx.globalAlpha=0.4;
+    	  document.getElementById("status").innerHTML = trial.start_instructions + "<br>&nbsp";
     	};
 
     		imageObj.crossOrigin="anonymous";
@@ -342,17 +348,13 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     				ctx.fillStyle = 'green';
     				ctx.globalAlpha=0.4;
     				ctx.fill();
-
-    				// ctx.fillStyle = 'green';
-    				// ctx.globalAlpha=1;
-
     				ctx.beginPath();
     				ctx.arc(mouse.x, mouse.y, 4, 0, 2 * Math.PI, false);
     				ctx.fillStyle = 'green';
     				ctx.globalAlpha=1;
     				ctx.fill();
     				lastRefresh = currentRefresh
-    				document.getElementById("status").innerHTML = trial.start_instructions;
+    				document.getElementById("status").innerHTML = trial.start_instructions + "<br>&nbsp";
     			}
     			} else {
     				//remove score display at the end of the task:
@@ -360,9 +362,9 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
 
     				//display "you have finished the task"
             if(score_feedback == true) {
-      				document.getElementById("status").innerHTML = trial.end_instructions;
+      				document.getElementById("status").innerHTML = trial.end_instructions + "<br>&nbsp";
             } else {
-              document.getElementById("status").innerHTML = trial.end_instructions;
+              document.getElementById("status").innerHTML = trial.end_instructions + "<br>&nbsp";
             }
     			}
     		}
@@ -394,7 +396,9 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     						finished = false;
     						startTime = new Date();
     						ctx.beginPath();
-    						canvas.style.cursor = 'none';
+                if (trial.cursor_display == false) {
+                  canvas.style.cursor = 'none';
+                }
     						document.getElementById("status").innerHTML = trial.draw_instructions + "<br>&nbsp";
     							ctx.moveTo(mouse.x, mouse.y);
     					}

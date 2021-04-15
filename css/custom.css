@@ -13,3 +13,13 @@
 	font-size:25px;
 	color: grey;
 }
+
+.custom-scale {
+	font-family: 'Smart_Kid';
+	font-size: 20px;
+}
+
+.custom-25px {
+	font-family: 'Smart_Kid';
+	font-size: 25px;
+}
