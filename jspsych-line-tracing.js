@@ -72,6 +72,24 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
         default: true,
         description: 'Presence or not of the score feedback.'
       },
+      start_instructions: {
+        type: jsPsych.plugins.parameterType.STRING,
+        pretty_name: 'Start instructions',
+        default: "Click on the green circle to start the trial",
+        description: 'Instructions to start the task'
+      },
+      draw_instructions: {
+        type: jsPsych.plugins.parameterType.STRING,
+        pretty_name: 'Draw instructions',
+        default: "Go to the red circle to complete the trial",
+        description: 'Instructions on how to draw'
+      },
+      end_instructions: {
+        type: jsPsych.plugins.parameterType.STRING,
+        pretty_name: 'End instructions',
+        default: "You finished this trial",
+        description: 'End of the trial'
+      },
     }
   }
 
@@ -197,7 +215,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     		ctx.fill();
     		//transparence du rond vert
     	  ctx.globalAlpha=1;
-    	  document.getElementById("status").innerHTML = "Cliquez sur le cercle vert pour commencer cet essai. <br> &nbsp";
+    	  document.getElementById("status").innerHTML = trial.start_instructions;
     	};
 
     		imageObj.crossOrigin="anonymous";
@@ -308,9 +326,9 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     			ctx.stroke();
     			//remove score display during task :
           if(score_feedback == true) {
-      			document.getElementById("status").innerHTML = "Rejoignez le cercle rouge en restant le plus possible sur les lignes de la figure. <br>Score = " + Math.round(score *100) +"% ";
+      			document.getElementById("status").innerHTML = trial.draw_instructions + "<br>Score = " + Math.round(score *100) +"% ";
           } else {
-            document.getElementById("status").innerHTML = "Rejoignez le cercle rouge en restant le plus possible sur les lignes de la figure. <br> &nbsp";
+            document.getElementById("status").innerHTML = trial.draw_instructions + "<br>&nbsp";
           }
     			document.getElementByID("status").innerHTML = p[0]+p[1]+p[2];
 
@@ -334,7 +352,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     				ctx.globalAlpha=1;
     				ctx.fill();
     				lastRefresh = currentRefresh
-    				document.getElementById("status").innerHTML = "Cliquez sur le cercle vert pour commencer cet essai. <br> &nbsp";
+    				document.getElementById("status").innerHTML = trial.start_instructions;
     			}
     			} else {
     				//remove score display at the end of the task:
@@ -342,9 +360,9 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
 
     				//display "you have finished the task"
             if(score_feedback == true) {
-      				document.getElementById("status").innerHTML = "Vous avez terminé cet essai avec le score suivant : "+ Math.round(score *100) + "%.<br> Cliquez sur la flèche verte en bas à droite pour continuer.";
+      				document.getElementById("status").innerHTML = trial.end_instructions;
             } else {
-              document.getElementById("status").innerHTML = "Vous avez terminé cet essai.<br> Cliquez sur la flèche verte en bas à droite pour continuer.";
+              document.getElementById("status").innerHTML = trial.end_instructions;
             }
     			}
     		}
@@ -377,7 +395,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     						startTime = new Date();
     						ctx.beginPath();
     						canvas.style.cursor = 'none';
-    						document.getElementById("status").innerHTML = "Rejoignez le cercle rouge en restant le plus possible sur les lignes de la figure. <br> &nbsp";
+    						document.getElementById("status").innerHTML = trial.draw_instructions + "<br>&nbsp";
     							ctx.moveTo(mouse.x, mouse.y);
     					}
     				}

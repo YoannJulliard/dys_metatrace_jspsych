@@ -33,14 +33,15 @@
 
 /* welcome message */
       var welcome = {
-        type: "html-keyboard-response",
+        type: "html-button-response",
+        choices: ["&#10095;"],
         stimulus: `
         <p class = "custom-font">Bonjour ! Bienvenue dans ce jeu. <br>
         <img src = "img/milo_hello.gif", height="150", width="150", align = center>
         <br>
         Je m'appelle Milo et c'est moi qui vais te guider dans cette nouvelle aventure !</p>
         <br>
-        <p class = "continue-instructions">Appuies sur n'importe quelle touche pour me suivre.</p>
+        <p class = "continue-instructions">Appuies sur la flèche pour me suivre.</p>
         `,
       };
 
@@ -57,51 +58,105 @@
 
       //general1
       var instructions_1 = {
-          type: "html-keyboard-response",
+          type: "html-button-response",
+          choices: ["&#10095;"],
           stimulus: `
-          <p class = "custom-font">Dans ce jeu, un dessin va apparaître sur l'écran et tu devras le redessiner le plus précisément possible en bougeant ta souris.</p>
-          <p class = "continue-instructions">Appuies sur n'importe quelle touche pour continuer.</p>
-          <img src = "img/image.png", height="100", width="150">
+          <p class = "custom-font">Un dessin va apparaître sur l'écran.</p>
+          <p class = "custom-font">Tu devras le redessiner le plus précisément possible en bougeant ta souris.</p>
+          <img src = "img/leo_showing.gif", height="200", width="250">
+          <p class = "continue-instructions">Appuies sur la flèche pour continuer.</p>
           `,
             };
 
       //general2
       var instructions_2 = {
-          type: "html-keyboard-response",
+          type: "html-button-response",
+          choices: ["&#10095;"],
           stimulus: `
           <p class = "custom-font">Pour commencer le jeu, tu vas devoir cliquer sur le rond vert: c'est le point de départ.</p>
           <p class = "custom-font">Un rond rouge va alors apparaître : c'est le point d'arrivée. </p>
-          <p class = "custom-font">Le but est d'arriver sur le point rouge en redessinant le mieux possible le dessin.</p>
-          <p class = "custom-font">Plus tu resteras sur les lignes du dessin, plus tu gagneras des points. Le but est de gagner le plus de points possible.</p>
-          <p class = "continue-instructions">Appuies sur n'importe quelle touche pour commencer le jeu.</p>
+          <p class = "custom-font">Le but est d'arriver sur le rond rouge en restant le plus possible sur les lignes du dessin.</p>
+          <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
 
+      //general3
+      var instructions_3 = {
+          type: "html-button-response",
+          choices: ["&#10095;"],
+          stimulus: `
+          <p class = "custom-font">Plus tu resteras sur les lignes du dessin, plus tu gagneras des points.</p>
+          <p class = "custom-font">Le but est de gagner le plus de points possible.</p>
+          <img src = "img/lea_points.gif", height="200", width="250">
+          <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
+          `,
+            };
+
+      //level1
+      var level1 = {
+          type: "html-button-response",
+          choices: ["&#10095;"],
+          stimulus: `
+          <p class = "custom-font">Dans ce jeu, il y a aura trois niveaux.</p>
+          <p class = "custom-font">Commençons par le premier niveau ! </p>
+          <img src = "img/island4.png", height="200", width="200">
+          <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
+          `,
+            };
+
+      //level2
+      var level2 = {
+          type: "html-button-response",
+          choices: ["&#10095;"],
+          stimulus: `
+          <p class = "custom-font">Bravo ! Tu as fini le premier niveau.</p>
+          <p class = "custom-font">Continuons avec le deuxième niveau ! </p>
+          <img src = "img/island3.png", height="200", width="200">
+          <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
+          `,
+            };
+
+      //level3
+      var level3 = {
+          type: "html-button-response",
+          choices: ["&#10095;"],
+          stimulus: `
+          <p class = "custom-font">Bravo ! Tu as fini le deuxième niveau.</p>
+          <p class = "custom-font">Continuons avec le dernier niveau ! </p>
+          <img src = "img/island2.png", height="200", width="200">
+          <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
+          `,
+            };
+
+
       //training phase 1 : with both visual and score feedback
       var instructions_all_feedback = {
-          type: "html-keyboard-response",
+          type: "html-button-response",
+          choices: ["&#10095;"],
           stimulus: `
           <p class = "custom-font"> </p>
-          <p class = "continue-instructions">Appuies sur n'importe quelle touche pour commencer le jeu.</p>
+          <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
 
 
       //training phase 2 : only score feedback
       var instructions_score_feedback = {
-          type: "html-keyboard-response",
+          type: "html-button-response",
+          choices: ["&#10095;"],
           stimulus: `
           <p class = "custom-font"> </p>
-          <p class = "continue-instructions">Appuies sur n'importe quelle touche pour commencer le jeu.</p>
+          <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
 
       //test phase without feedback
       var instructions_test = {
-          type: "html-keyboard-response",
+          type: "html-button-response",
+          choices: ["&#10095;"],
           stimulus: `
           <p class = "custom-font"> </p>
-          <p class = "continue-instructions">Appuies sur n'importe quelle touche pour commencer le jeu.</p>
+          <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
 
@@ -138,7 +193,10 @@ var training_all_feedback = {
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "color",
   score_feedback: true,
-  stimulus: `<p>stimulus</p>`,
+  start_instructions: "Cliques sur le rond vert pour commencer !",
+  draw_instructions: "Rejoins le rond rouge en restant sur les lignes du dessin",
+  end_instructions: "Tu as fini ce dessin. Cliques sur la flèche pour continuer.",
+  stimulus: `<p></p>`,
   prompt: '<p>Press "y" key to begin.</p>',
   choices: ['y'],
   data: {},
@@ -156,7 +214,10 @@ var training_score_feedback = {
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "transparent",
   score_feedback: true,
-  stimulus: `<p>stimulus</p>`,
+  start_instructions: "Cliques sur le rond vert pour commencer !",
+  draw_instructions: "Rejoins le rond rouge en restant sur les lignes du dessin",
+  end_instructions: "Tu as fini ce dessin. Cliques sur la flèche pour continuer.",
+  stimulus: `<p></p>`,
   prompt: '<p>Press "y" key to begin.</p>',
   choices: ['y'],
   data: {},
@@ -174,7 +235,10 @@ var test_phase = {
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "transparent",
   score_feedback: false,
-  stimulus: `<p>stimulus</p>`,
+  start_instructions: "Cliques sur le rond vert pour commencer !",
+  draw_instructions: "Rejoins le rond rouge en restant sur les lignes du dessin",
+  end_instructions: "Tu as fini ce dessin. Cliques sur la flèche pour continuer.",
+  stimulus: `<p></p>`,
   prompt: '<p>Press "y" key to begin.</p>',
   choices: ['y'],
   data: {},
@@ -275,11 +339,13 @@ var test_procedure = {
 /*End of the line tracing task*/
 
     var end_task = {
-      type: "html-keyboard-response",
+      type: "html-button-response",
+      choices: ["&#10095;"],
       stimulus: `
         <p class = "custom-font">Bravo ! Tu as terminé le jeu et tu t'en es très bien sorti ! Merci d'avoir joué avec moi.</p>
+        <img src = "img/island2.png", height="200", width="200">
         <p class = "custom-font">Avant de partir, j'ai quelques questions pour toi !</p>
-        <p >Appuies sur n'importe quelle touche pour continuer.</p>
+        <p class = "continue-instructions">Appuies sur la flèche pour continuer.</p>
         `,
     };
 
@@ -320,7 +386,7 @@ var test_procedure = {
         type: "html-keyboard-response",
         stimulus: `
         <p class = "custom-font">Tu as terminé ce jeu et tu t'en es très bien sorti.</p>
-        <p class = "custom-font">Bravo et merci beaucoup d'avoir joué avec moi !</p>
+        <p class = "custom-font">Bravo et merci d'avoir joué avec moi !</p>
         <p class = "custom-font">A bientôt peut être.</p>
         <img src = "img/milo_hello.gif", height="150", width="150", align = center>
       `};
@@ -329,12 +395,16 @@ var test_procedure = {
 /* create timeline */
     var timeline = [];
     timeline.push(welcome,
-                  fullscreen,
+                  //fullscreen,
+                  level1,
                   instructions_1,
-                  //instructions_2,
-                  //training_all_feedback_procedure,
-                  //training_score_feedback_procedure,
-                  //test_procedure,
+                  instructions_2,
+                  instructions_3,
+                  training_all_feedback_procedure,
+                  level2,
+                  training_score_feedback_procedure,
+                  level3,
+                  test_procedure,
                   // end_task,
                   // age,
                   // sex,
