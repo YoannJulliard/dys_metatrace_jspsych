@@ -299,7 +299,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     		ctx.fill();
     		//transparence du rond vert
     	  ctx.globalAlpha=0.4;
-    	  document.getElementById("status").innerHTML = trial.start_instructions + "<br>&nbsp";
+    	  document.getElementById("status").innerHTML = trial.start_instructions + "<br>&nbsp" + "<br>&nbsp";
     	};
 
     		imageObj.crossOrigin="anonymous";
@@ -412,7 +412,8 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     			ctx.stroke();
     			//remove score display during task :
           if(score_feedback == true) {
-      			document.getElementById("status").innerHTML = trial.draw_instructions + `<p class = "custom-font">Score = ` + Math.round(score) + `</p>`;
+      			// document.getElementById("status").innerHTML = trial.draw_instructions + `<p class = "custom-font">Score = ` + Math.round(score) + `</p>`;
+            document.getElementById("status").innerHTML = trial.draw_instructions + `<p class = "custom-font">Score = ` + score + `</p>`;
           } else {
             document.getElementById("status").innerHTML = trial.draw_instructions + "<br>&nbsp";
           }

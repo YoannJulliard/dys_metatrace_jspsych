@@ -237,9 +237,9 @@ var training_score_feedback = {
   data: {},
   on_finish: function(data){
     data_score = data.score *10;
-    data_score_falsed = data_score;
-    data_score_2d = data_score.toFixed(2);
-    data_score_falsed_2d = data_score_falsed.toFixed(2)-1;
+    data_score_falsed = data_score -1;
+    // data_score_2d = data_score.toFixed(2);
+    // data_score_falsed_2d = data_score_falsed.toFixed(2)-1;
 }
 };
 
@@ -259,9 +259,9 @@ var test_phase = {
   data: {},
   on_finish: function(data){
     data_score = data.score *10;
-    data_score_falsed = data_score;
-    data_score_2d = data_score.toFixed(2);
-    data_score_falsed_2d = data_score_falsed.toFixed(2)-1;
+    data_score_falsed = data_score -1;
+    // data_score_2d = data_score.toFixed(2);
+    // data_score_falsed_2d = data_score_falsed.toFixed(2)-1;
 }
 };
 
