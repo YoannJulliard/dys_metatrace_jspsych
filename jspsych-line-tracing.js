@@ -1,8 +1,8 @@
 /**
- * jspsych-html-keyboard-response
+ * jspsych-html-button-response
  * Josh de Leeuw
  *
- * plugin for displaying a stimulus and getting a keyboard response
+ * plugin for displaying a stimulus and getting a button response
  *
  * documentation: docs.jspsych.org
  *
@@ -24,17 +24,24 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
         description: 'The HTML string to be displayed'
       },
       choices: {
-        type: jsPsych.plugins.parameterType.KEY,
+        type: jsPsych.plugins.parameterType.STRING,
         array: true,
         pretty_name: 'Choices',
-        default: jsPsych.ALL_KEYS,
-        description: 'The keys the subject is allowed to press to respond to the stimulus.'
+        default: undefined,
+        description: 'The labels for the buttons.'
+      },
+      button_html: {
+        type: jsPsych.plugins.parameterType.STRING,
+        pretty_name: 'Button HTML',
+        default: '<button class="jspsych-btn">%choice%</button>',
+        array: true,
+        description: 'The html of the button. Can create own style.'
       },
       prompt: {
         type: jsPsych.plugins.parameterType.STRING,
         pretty_name: 'Prompt',
         default: null,
-        description: 'Any content here will be displayed below the stimulus.'
+        description: 'Any content here will be displayed under the button.'
       },
       stimulus_duration: {
         type: jsPsych.plugins.parameterType.INT,
@@ -47,6 +54,18 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
         pretty_name: 'Trial duration',
         default: null,
         description: 'How long to show trial before it ends.'
+      },
+      margin_vertical: {
+        type: jsPsych.plugins.parameterType.STRING,
+        pretty_name: 'Margin vertical',
+        default: '0px',
+        description: 'The vertical margin of the button.'
+      },
+      margin_horizontal: {
+        type: jsPsych.plugins.parameterType.STRING,
+        pretty_name: 'Margin horizontal',
+        default: '8px',
+        description: 'The horizontal margin of the button.'
       },
       response_ends_trial: {
         type: jsPsych.plugins.parameterType.BOOL,
@@ -71,6 +90,12 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
         pretty_name: 'Score feedback',
         default: true,
         description: 'Presence or not of the score feedback.'
+      },
+      final_score_feedback: {
+        type: jsPsych.plugins.parameterType.BOOL,
+        pretty_name: 'Final core feedback',
+        default: true,
+        description: 'Presence or not of the score feedback at the end of the trial.'
       },
       start_instructions: {
         type: jsPsych.plugins.parameterType.STRING,
@@ -101,18 +126,69 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
 
   plugin.trial = function(display_element, trial) {
 
-    var new_html = '<div id="jspsych-html-keyboard-response-stimulus">'+trial.stimulus+'</div>';
+    var html = '<div id="jspsych-html-button-response-stimulus">'+trial.stimulus+'</div>';
 
-    new_html += '<div id="sketch"><canvas id="paint" width="400" height="300" style="border:1px solid #000000;"></canvas> </div>' +
+    html += '<div id="sketch"><canvas id="paint" width="400" height="300" style="border:1px solid #000000;"></canvas> </div>' +
                 '<div id="status"></div>';
 
-    // add prompt
-    if(trial.prompt !== null){
-      new_html += trial.prompt;
+    // helper to show buttons
+    function hide_continue_button() {
+      var x = document.getElementById("jspsych-html-button-response-btngroup");
+      // if (x.style.display === "none") {
+      //   x.style.display = "block";
+      // } else {
+        x.style.display = "none";
+      // }
     }
 
-    // draw
-    display_element.innerHTML = new_html;
+    // helper to show buttons
+    function show_continue_button() {
+      var x = document.getElementById("jspsych-html-button-response-btngroup");
+      // if (x.style.display === "none") {
+      //   x.style.display = "block";
+      // } else {
+        x.style.display = "block";
+      // }
+    }
+
+    //display buttons
+    var buttons = [];
+    if (Array.isArray(trial.button_html)) {
+      if (trial.button_html.length == trial.choices.length) {
+        buttons = trial.button_html;
+      } else {
+        console.error('Error in html-button-response plugin. The length of the button_html array does not equal the length of the choices array');
+      }
+    } else {
+      for (var i = 0; i < trial.choices.length; i++) {
+        buttons.push(trial.button_html);
+      }
+    }
+    html += '<div id="jspsych-html-button-response-btngroup">';
+    for (var i = 0; i < trial.choices.length; i++) {
+      var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
+      html += '<div class="jspsych-html-button-response-button" style="display: inline-block; margin:'+trial.margin_vertical+' '+trial.margin_horizontal+'" id="jspsych-html-button-response-button-' + i +'" data-choice="'+i+'">'+str+'</div>';
+    }
+    html += '</div>';
+
+    //show prompt if there is one
+    if (trial.prompt !== null) {
+      html += trial.prompt;
+    }
+    display_element.innerHTML = html;
+
+    // start time
+    var start_time = performance.now();
+
+    // add event listeners to buttons
+    for (var i = 0; i < trial.choices.length; i++) {
+      display_element.querySelector('#jspsych-html-button-response-button-' + i).addEventListener('click', function(e){
+        var choice = e.currentTarget.getAttribute('data-choice'); // don't use dataset for jsdom compatibility
+        after_response(choice);
+      });
+    }
+
+    hide_continue_button();
 
     //--------------------- LINE TRACING TASK -------------------------------------------------------------------------------------------------------
 
@@ -170,6 +246,8 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     	var currentRefresh = 0;
       var trace_color = trial.trace_color;
       var score_feedback = trial.score_feedback;
+      var final_score_feedback = trial.final_score_feedback;
+
 
 
     function line_tracing() {
@@ -265,6 +343,8 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     		  if (drawing) {
     			drawing = false;
     			finished = true;
+          // hide/show buttons
+          show_continue_button();
     			}
     		}
 
@@ -303,7 +383,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     				}
     			}
 
-    			score = distance_inline / (distance_offline + distance_inline);
+    			score = (distance_inline / (distance_offline + distance_inline))*10;
     			// score = distance_current;
     			endTime = new Date();
     			timeDiff = (endTime - startTime)/1000;
@@ -332,7 +412,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     			ctx.stroke();
     			//remove score display during task :
           if(score_feedback == true) {
-      			document.getElementById("status").innerHTML = trial.draw_instructions + "<br>Score = " + Math.round(score *100) +"% ";
+      			document.getElementById("status").innerHTML = trial.draw_instructions + `<p class = "custom-font">Score = ` + Math.round(score) + `</p>`;
           } else {
             document.getElementById("status").innerHTML = trial.draw_instructions + "<br>&nbsp";
           }
@@ -361,10 +441,10 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     				//document.getElementById("status").innerHTML = "Finished with score = " + Math.round(score *100) + "%<BR> Click next to continue.";
 
     				//display "you have finished the task"
-            if(score_feedback == true) {
-      				document.getElementById("status").innerHTML = trial.end_instructions + "<br>&nbsp";
+            if(final_score_feedback == true) {
+      				document.getElementById("status").innerHTML = trial.end_instructions + `<p class = "custom-font">Voici ton score : ` + Math.round(score) + `</p><p class = "continue-instructions">Cliques sur la flèche pour continuer</p>`;
             } else {
-              document.getElementById("status").innerHTML = trial.end_instructions + "<br>&nbsp";
+              document.getElementById("status").innerHTML = trial.end_instructions + `<p class = "continue-instructions">Cliques sur la flèche pour continuer</p>`;
             }
     			}
     		}
@@ -444,31 +524,53 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
 
     line_tracing();
 
-    //--------------------- LINE TRACING TASK -------------------------------------------------------------------------------------------------------
+
+    //--------------------- END LINE TRACING TASK -------------------------------------------------------------------------------------------------------
 
 
     // store response
     var response = {
       rt: null,
-      key: null
+      button: null
+    };
+
+    // function to handle responses by the subject
+    function after_response(choice) {
+
+      // measure rt
+      var end_time = performance.now();
+      var rt = end_time - start_time;
+      response.button = parseInt(choice);
+      response.rt = rt;
+
+      // after a valid response, the stimulus will have the CSS class 'responded'
+      // which can be used to provide visual feedback that a response was recorded
+      display_element.querySelector('#jspsych-html-button-response-stimulus').className += ' responded';
+
+      // disable all the buttons after a response
+      var btns = document.querySelectorAll('.jspsych-html-button-response-button button');
+      for(var i=0; i<btns.length; i++){
+        //btns[i].removeEventListener('click');
+        btns[i].setAttribute('disabled', 'disabled');
+      }
+
+      if (trial.response_ends_trial) {
+        end_trial();
+      }
     };
 
     // function to end trial when it is time
-    var end_trial = function() {
+    function end_trial() {
 
       // kill any remaining setTimeout handlers
       jsPsych.pluginAPI.clearAllTimeouts();
 
-      // kill keyboard listeners
-      if (typeof keyboardListener !== 'undefined') {
-        jsPsych.pluginAPI.cancelKeyboardResponse(keyboardListener);
-      }
 
       // gather the data to store for the trial
       var trial_data = {
         rt: response.rt,
         stimulus: trial.stimulus,
-        response: response.key,
+        response: response.button,
         score: score,
         figure_number: trial.figure_number,
         time_diff: timeDiff,
@@ -486,38 +588,11 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
       jsPsych.finishTrial(trial_data);
     };
 
-    // function to handle responses by the subject
-    var after_response = function(info) {
 
-      // after a valid response, the stimulus will have the CSS class 'responded'
-      // which can be used to provide visual feedback that a response was recorded
-      display_element.querySelector('#jspsych-html-keyboard-response-stimulus').className += ' responded';
-
-      // only record the first response
-      if (response.key == null) {
-        response = info;
-      }
-
-      if (trial.response_ends_trial) {
-        end_trial();
-      }
-    };
-
-    // start the response listener
-    if (trial.choices != jsPsych.NO_KEYS) {
-      var keyboardListener = jsPsych.pluginAPI.getKeyboardResponse({
-        callback_function: after_response,
-        valid_responses: trial.choices,
-        rt_method: 'performance',
-        persist: false,
-        allow_held_key: false
-      });
-    }
-
-    // hide stimulus if stimulus_duration is set
+    // hide image if timing is set
     if (trial.stimulus_duration !== null) {
       jsPsych.pluginAPI.setTimeout(function() {
-        display_element.querySelector('#jspsych-html-keyboard-response-stimulus').style.visibility = 'hidden';
+        display_element.querySelector('#jspsych-html-button-response-stimulus').style.visibility = 'hidden';
       }, trial.stimulus_duration);
     }
 
@@ -527,6 +602,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
         end_trial();
       }, trial.trial_duration);
     }
+
 
   };
 

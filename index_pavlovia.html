@@ -3,6 +3,15 @@
     <head>
         <title>Study on Line Tracing Task | LPNC</title>
 
+
+        <!-- Pavlovia -->
+        <script type="text/javascript" src="lib/vendors/jspsych-6.0.0/jspsych.js"></script>
+      	<link href="lib/vendors/jspsych-6.0.0/css/jspsych.css" rel="stylesheet" type="text/css" />
+      	<script type="text/javascript" src="lib/vendors/jspsych-6.0.0/plugins/jspsych-html-keyboard-response.js"></script>
+      	<script type="text/javascript" src="lib/vendors/jspsych-6.0.0/plugins/jspsych-image-keyboard-response.js"></script>
+      	<script type="text/javascript" src="lib/vendors/jquery-2.2.0.min.js"></script>
+      	<script type="text/javascript" src="lib/jspsych-pavlovia-2020.2.js"></script>
+
         <!-- jsPsych core library and plugins -->
       <script src="jspsych-6.3.0/jspsych.js"></script>
       <script src="jspsych-6.3.0/plugins/jspsych-html-keyboard-response.js"></script>
@@ -14,7 +23,6 @@
       <script src="jspsych-6.3.0/plugins/jspsych-fullscreen.js"></script>
       <script src="jspsych-6.3.0/plugins/jspsych-survey-multi-choice.js"></script>
       <script src="jspsych-6.3.0/plugins/jspsych-survey-text.js"></script>
-      <script src="jspsych-6.3.0/css/jspsych.css"></script>
       <script src="jspsych-line-tracing.js"></script>
       <link href="jspsych-6.3.0/css/jspsych.css" rel="stylesheet" type="text/css">
 
@@ -64,7 +72,7 @@
           stimulus: `
           <p class = "custom-font">Un dessin va apparaître sur l'écran.</p>
           <p class = "custom-font">Tu devras le redessiner le plus précisément possible en bougeant ta souris.</p>
-          <img src = "img/milo_showing_right.png", height="150", width="150">
+          <img src = "img/leo_showing.gif", height="150", width="150">
           <img src = "img/instructions1.png", height="200", width="250">
           <p class = "continue-instructions">Appuies sur la flèche pour continuer.</p>
           `,
@@ -92,7 +100,7 @@
           <p class = "custom-font">Plus tu resteras sur les lignes du dessin, plus tu gagneras des points.</p>
           <p class = "custom-font">Le but est de gagner le plus de points possible.</p>
           <img src = "img/instructions3.png", height="200", width="250">
-          <img src = "img/milo_showing_points.png", height="150", width="150">
+          <img src = "img/lea_points.gif", height="150", width="150">
           <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
             };
@@ -204,19 +212,18 @@ var training_all_feedback = {
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "color",
   score_feedback: true,
-  final_score_feedback: true,
   start_instructions: `<p class = "custom-font">Cliques sur le rond vert pour commencer !</p>`,
   draw_instructions: `<p class = "custom-font">Rejoins le rond rouge en restant sur les lignes du dessin</p>`,
   end_instructions: `<p class = "custom-font">Tu as fini ce dessin. Bravo !</p>`,
   stimulus: `<p></p>`,
-  prompt: '<p></p>',
-  choices: ["&#10095;"],
+  prompt: '<p>Appuies sur "y" pour continuer.</p>',
+  choices: ['y'],
   data: {},
   on_finish: function(data){
-  data_score = data.score;
-  data_score_falsed = data_score -1;
-  // data_score_2d = data_score.toFixed(2);
-  // data_score_falsed_2d = data_score_falsed.toFixed(2)-1;
+  data_score = data.score * 10;
+  data_score_falsed = data_score * 0.9;
+  data_score_2d = data_score.toFixed(2);
+  data_score_falsed_2d = data_score_falsed.toFixed(2);
 }
 };
 
@@ -226,20 +233,19 @@ var training_score_feedback = {
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "transparent",
   score_feedback: false,
-  final_score_feedback: true,
   cursor_display: true,
   start_instructions: `<p class = "custom-font">Cliques sur le rond vert pour commencer !</p>`,
   draw_instructions: `<p class = "custom-font">Rejoins le rond rouge en restant sur les lignes du dessin</p>`,
   end_instructions: `<p class = "custom-font">Tu as fini ce dessin. Bravo ! </p>`,
   stimulus: `<p></p>`,
-  prompt: '<p></p>',
-  choices: ["&#10095;"],
+  prompt: '<p>Appuies sur "y" pour continuer.</p>',
+  choices: ['y'],
   data: {},
   on_finish: function(data){
-    data_score = data.score *10;
-    data_score_falsed = data_score;
-    data_score_2d = data_score.toFixed(2);
-    data_score_falsed_2d = data_score_falsed.toFixed(2)-1;
+  data_score = data.score * 10;
+  data_score_falsed = data_score * 0.9;
+  data_score_2d = data_score.toFixed(2);
+  data_score_falsed_2d = data_score_falsed.toFixed(2);
 }
 };
 
@@ -249,19 +255,18 @@ var test_phase = {
   figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "transparent",
   score_feedback: false,
-  final_score_feedback: false,
   start_instructions: `<p class = "custom-font">Cliques sur le rond vert pour commencer !</p>`,
   draw_instructions: `<p class = "custom-font">Rejoins le rond rouge en restant sur les lignes du dessin</p>`,
   end_instructions: `<p class = "custom-font">Tu as fini ce dessin. Bravo !</p>`,
   stimulus: `<p></p>`,
-  prompt: '<p></p>',
-  choices: ["&#10095;"],
+  prompt: '<p>Appuies sur "y" pour continuer.</p>',
+  choices: ['y'],
   data: {},
   on_finish: function(data){
-    data_score = data.score *10;
-    data_score_falsed = data_score;
-    data_score_2d = data_score.toFixed(2);
-    data_score_falsed_2d = data_score_falsed.toFixed(2)-1;
+  data_score = data.score * 10;
+  data_score_falsed = data_score * 0.9;
+  data_score_2d = data_score.toFixed(2);
+  data_score_falsed_2d = data_score_falsed.toFixed(2);
 }
 };
 
@@ -277,8 +282,8 @@ var test_phase = {
       choices: [,],
       prompt: "<p></p>",
       on_start: function(twoafc){
-        twoafc.choices[0] = Math.round(data_score);
-        twoafc.choices[1] = Math.round(data_score_falsed);
+        twoafc.choices[0] = Math.round(data_score_2d);
+        twoafc.choices[1] = Math.round(data_score_falsed_2d);
       }
     };
 
@@ -424,13 +429,24 @@ var test_procedure = {
 
 
 /* create timeline */
+
     var timeline = [];
+
+    //init connection with pavlovia.org//
+    var pavlovia_init = {
+      type: "pavlovia",
+      command: "init"
+    };
+    timeline.push(pavlovia_init);
+
+
+
     timeline.push(welcome,
                   //fullscreen,
-                  // level1,
-                  // instructions_1,
-                  // instructions_2,
-                  // instructions_3,
+                  level1,
+                  instructions_1,
+                  instructions_2,
+                  instructions_3,
                   training_all_feedback_procedure,
                   level2,
                   training_score_feedback_procedure,
@@ -445,10 +461,18 @@ var test_procedure = {
                   ending);
 
 
+  /* finish connection with pavlovia.org */
+	var pavlovia_finish = {
+		type: "pavlovia",
+		command: "finish",
+		participantId: "JSPSYCH-DEMO"
+	};
+	timeline.push(pavlovia_finish);
+
+
   /* start the experiment */
       jsPsych.init({
         timeline: timeline,
-        show_progress_bar : true,
         on_finish: function(){
           jsPsych.data.displayData();
         }
