@@ -299,7 +299,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     		ctx.fill();
     		//transparence du rond vert
     	  ctx.globalAlpha=0.4;
-    	  document.getElementById("status").innerHTML = trial.start_instructions + "<br>&nbsp" + "<br>&nbsp";
+    	  document.getElementById("status").innerHTML = trial.start_instructions + "<p class = 'custom-font'>&nbsp;</p><p class = 'custom-44px'>&nbsp;</p>";
     	};
 
     		imageObj.crossOrigin="anonymous";
@@ -412,10 +412,9 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     			ctx.stroke();
     			//remove score display during task :
           if(score_feedback == true) {
-      			// document.getElementById("status").innerHTML = trial.draw_instructions + `<p class = "custom-font">Score = ` + Math.round(score) + `</p>`;
-            document.getElementById("status").innerHTML = trial.draw_instructions + `<p class = "custom-font">Score = ` + score + `</p>`;
+      			document.getElementById("status").innerHTML = trial.draw_instructions + `<p class = "custom-font">Score = ` + Math.round(score) + `</p><p class = 'custom-44px'>&nbsp;</p>`;
           } else {
-            document.getElementById("status").innerHTML = trial.draw_instructions + "<br>&nbsp";
+            document.getElementById("status").innerHTML = trial.draw_instructions + "<p class = 'custom-font'>&nbsp;</p><p class = 'custom-44px'>&nbsp;</p>";;
           }
     			document.getElementByID("status").innerHTML = p[0]+p[1]+p[2];
 
@@ -435,7 +434,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     				ctx.globalAlpha=1;
     				ctx.fill();
     				lastRefresh = currentRefresh
-    				document.getElementById("status").innerHTML = trial.start_instructions + "<br>&nbsp";
+    				document.getElementById("status").innerHTML = trial.start_instructions + "<p class = 'custom-font'>&nbsp;</p><p class = 'custom-44px'>&nbsp;</p>";
     			}
     			} else {
     				//remove score display at the end of the task:
@@ -445,7 +444,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
             if(final_score_feedback == true) {
       				document.getElementById("status").innerHTML = trial.end_instructions + `<p class = "custom-font">Voici ton score : ` + Math.round(score) + `</p><p class = "continue-instructions">Cliques sur la flèche pour continuer</p>`;
             } else {
-              document.getElementById("status").innerHTML = trial.end_instructions + `<p class = "continue-instructions">Cliques sur la flèche pour continuer</p>`;
+              document.getElementById("status").innerHTML = trial.end_instructions + `<p class = "custom-font">&nbsp;</p><p class = "continue-instructions">Cliques sur la flèche pour continuer</p>`;
             }
     			}
     		}
@@ -480,7 +479,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
                 if (trial.cursor_display == false) {
                   canvas.style.cursor = 'none';
                 }
-    						document.getElementById("status").innerHTML = trial.draw_instructions + "<br>&nbsp";
+    						document.getElementById("status").innerHTML = trial.draw_instructions + "<p class = 'custom-font'>&nbsp;</p><p class = 'custom-44px'>&nbsp;</p>";
     							ctx.moveTo(mouse.x, mouse.y);
     					}
     				}

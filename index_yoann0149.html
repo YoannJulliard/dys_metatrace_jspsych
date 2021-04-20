@@ -178,18 +178,15 @@
 // defining the timeline variables
 
 var training_all_feedback_stimuli = [
-  {figure_number: 0, },
-  // {figure_number: 1, },
+  // {figure_number: 0, },
+  {figure_number: 1, },
   // {figure_number: 2, },
   // {figure_number: 3, },
-  // {figure_number: 4, },
-  // {figure_number: 5, },
-  // {figure_number: 6, },
 ];
 
 var training_score_feedback_stimuli = [
   // {figure_number: 1, },
-  {figure_number: 1, },
+  // {figure_number: 1, },
   {figure_number: 2, },
   // {figure_number: 3, },
 ];
@@ -199,9 +196,6 @@ var test_stimuli = [
   // {figure_number: 1, },
   // {figure_number: 2, },
   {figure_number: 3, },
-  {figure_number: 4, },
-  {figure_number: 5, },
-  {figure_number: 6, } },
 ];
 
 // -------- psychophysical scale ---------
@@ -210,16 +204,56 @@ var test_stimuli = [
 // Defining the psychophysical scale
 var n_consecutive_success = 0;
 var n_consecutive_failure = 0;
-// var actual_score = 99;
-// var guessed_score = 99;
+var actual_score = 99;
+var guessed_score = 99;
 var figure_difficulty = 0;
-// var success = true;
+var success = true;
+
+
+var psychophysical_scale = function () {
+  // check whether the participant correctly guessed its score or not
+  actual_score = data_score;
+  guessed_score = chosen_score;
+
+  if (actual_score == guessed_score) {
+    success = true;
+  } else {
+    success = false;
+  };
+  // increment consecutive success/failure
+  if (success) {
+    n_consecutive_success = n_consecutive_success + 1;
+    n_consecutive_failure = 0;
+  } else {
+    n_consecutive_failure = n_consecutive_failure + 1;
+    n_consecutive_success = 0;
+  };
+
+  // check whether there are 2 consecutive failures/success
+  // if so, adapt the difficulty accordingly
+  if (n_consecutive_success == 2) {
+    figure_difficulty = figure_difficulty + 1;
+  } else if (n_consecutive_failure == 2) {
+    figure_difficulty = figure_difficulty - 1;
+  } else {
+    figure_difficulty = figure_difficulty;
+  };
+
+  return(figure_difficulty)
+};
+
+var psychophysical_scaling = {
+    type: 'call-function',
+    func: psychophysical_scale
+};
+
+//--------------- END psychophysical scale ---------
+
 
 // 1: training phase with visual and score feedback
 var training_all_feedback = {
   type: "jspsych-line-tracing",
-  // Because we define the figure number at the onset of the trial, we do not need to specify it here.
-  // figure_number: jsPsych.timelineVariable('figure_number'),
+  figure_number: jsPsych.timelineVariable('figure_number'),
   trace_color: "color",
   score_feedback: true,
   final_score_feedback: true,
@@ -229,9 +263,6 @@ var training_all_feedback = {
   stimulus: '',
   prompt: '',
   choices: ["&#10095;"],
-  on_start: function(training_all_feedback) {
-    training_all_feedback.figure_number = figure_difficulty;
-  },
   data: {},
   on_finish: function(data){
   data_score = data.score;
@@ -299,17 +330,22 @@ var test_phase = {
         choice_1 = twoafc.choices[1];
         choices_01 = [choice_0, choice_1];
       },
+      // TEST number 2 psychophysical scale
+      // failed
       on_finish: function(data) {
         chosen_score = choices_01[data.response];
-        chosen_score1 = chosen_score + 1;
 
-        if (Math.round(data_score) == chosen_score) {
+
+        var actual_score = data_score;
+        var guessed_score = chosen_score;
+
+        if (actual_score == guessed_score) {
           var success = true;
         } else {
           var success = false;
         };
         // increment consecutive success/failure
-        if (success == true) {
+        if (success) {
           n_consecutive_success = n_consecutive_success + 1;
           n_consecutive_failure = 0;
         } else {
@@ -342,8 +378,8 @@ var test_phase = {
       choices: [,],
       prompt: "<p></p>",
       on_start: function(test) {
-        test.choices[0] = n_consecutive_success;
-        test.choices[1] = figure_difficulty;
+        test.choices[0] = Math.round(chosen_score);
+        test.choices[1] = Math.round(chosen_score);
       },
     };
 
@@ -381,16 +417,16 @@ var training_all_feedback_procedure = {
     training_all_feedback,
     twoafc,
     confidence,
-    // test
+    test
+    // psychophysical_scaling,
   ],
   timeline_variables: training_all_feedback_stimuli,
   randomize_order: true,
   sample: {
           // without replacement: once a figure is picked, it cannot be picked again
-          // type: 'without-replacement',
-          type: 'with-replacement',
+          type: 'without-replacement',
           // number of trials of the procedure
-          size: 1,
+          size: 3,
   }
 };
 
@@ -408,7 +444,7 @@ var training_score_feedback_procedure = {
           // without replacement: once a figure is picked, it cannot be picked again
           type: 'without-replacement',
           // number of trials of the procedure
-          size: 2,
+          size: 3,
   }
 };
 
@@ -494,11 +530,11 @@ var test_procedure = {
 /* create timeline */
     var timeline = [];
     timeline.push(welcome,
-                  fullscreen,
-                  level1,
-                  instructions_1,
-                  instructions_2,
-                  instructions_3,
+                  //fullscreen,
+                  // level1,
+                  // instructions_1,
+                  // instructions_2,
+                  // instructions_3,
                   training_all_feedback_procedure,
                   level2,
                   training_score_feedback_procedure,
@@ -509,7 +545,7 @@ var test_procedure = {
                   sex,
                   difficulty,
                   comments,
-                  fullscreen_exit,
+                  //fullscreen_exit,
                   ending);
 
 
