@@ -50,7 +50,7 @@
 /* switching to fullscreen */
       var fullscreen = {
         type: 'fullscreen',
-        message: `<p class = "custom-font">Pour commencer ce jeu, cliques sur le bouton "Commencer"</p>`,
+        message: `<p class = "custom-font">Pour commencer ce jeu, clique sur le bouton "Commencer"</p>`,
         button_label: 'Commencer',
         fullscreen_mode: true
       };
@@ -220,7 +220,7 @@ var training_all_feedback = {
   trace_color: "color",
   score_feedback: true,
   final_score_feedback: true,
-  start_instructions: `<p class = "custom-font">Cliques sur le rond vert pour commencer !</p>`,
+  start_instructions: `<p class = "custom-font">Clique sur le rond vert pour commencer !</p>`,
   draw_instructions: `<p class = "custom-font">Rejoins le rond rouge en restant sur les lignes du dessin</p>`,
   end_instructions: `<p class = "custom-font">Tu as fini ce dessin. Bravo !</p>`,
   stimulus: '',
@@ -244,7 +244,7 @@ var training_score_feedback = {
   score_feedback: false,
   final_score_feedback: true,
   cursor_display: true,
-  start_instructions: `<p class = "custom-font">Cliques sur le rond vert pour commencer !</p>`,
+  start_instructions: `<p class = "custom-font">Clique sur le rond vert pour commencer !</p>`,
   draw_instructions: `<p class = "custom-font">Rejoins le rond rouge en restant sur les lignes du dessin</p>`,
   end_instructions: `<p class = "custom-font">Tu as fini ce dessin. Bravo ! </p>`,
   stimulus: ``,
@@ -264,7 +264,7 @@ var test_phase = {
   trace_color: "transparent",
   score_feedback: false,
   final_score_feedback: false,
-  start_instructions: `<p class = "custom-font">Cliques sur le rond vert pour commencer !</p>`,
+  start_instructions: `<p class = "custom-font">Clique sur le rond vert pour commencer !</p>`,
   draw_instructions: `<p class = "custom-font">Rejoins le rond rouge en restant sur les lignes du dessin</p>`,
   end_instructions: `<p class = "custom-font">Tu as fini ce dessin. Bravo !</p>`,
   stimulus: ``,
@@ -284,7 +284,7 @@ var test_phase = {
       type: 'html-button-response',
       stimulus: `
       <p class = "custom-font"> Je vais maintenant te montrer deux scores : un seul des deux est le tien.</p>
-      <p class = "custom-font">A ton avis, lequel est le tien ? Cliques dessus !</p>
+      <p class = "custom-font">A ton avis, lequel est le tien ? Clique dessus !</p>
       `,
       choices: [,],
       prompt: "<p></p>",
@@ -334,7 +334,7 @@ var test_phase = {
       type: 'html-button-response',
       stimulus: `
       <p class = "custom-font"> Je vais maintenant te montrer deux scores : un seul des deux est le tien.</p>
-      <p class = "custom-font">A ton avis, lequel est le tien ? Cliques dessus !</p>
+      <p class = "custom-font">A ton avis, lequel est le tien ? Clique dessus !</p>
       `,
       choices: [,],
       prompt: "<p></p>",
@@ -361,8 +361,8 @@ var test_phase = {
       questions: [
       {prompt: `
         <p class = "custom-font">Maintenant, demandes-toi à quel point tu es sûr(e) que ta réponse est correcte.</p>
-        <p class = "custom-25px">Si tu n'es pas du tout sûr(e) de ta réponse, cliques sur "0".</p>
-        <p class = "custom-25px">Si tu es vraiment sûr(e) de ta réponse, cliques sur "4".</p>`,
+        <p class = "custom-25px">Si tu n'es pas du tout sûr(e) de ta réponse, clique sur "0".</p>
+        <p class = "custom-25px">Si tu es vraiment sûr(e) de ta réponse, clique sur "4".</p>`,
         labels: scale,
         required: true}
       ]
