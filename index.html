@@ -179,29 +179,26 @@
 
 var training_all_feedback_stimuli = [
   {figure_number: 0, },
-  // {figure_number: 1, },
-  // {figure_number: 2, },
-  // {figure_number: 3, },
-  // {figure_number: 4, },
-  // {figure_number: 5, },
-  // {figure_number: 6, },
+  {figure_number: 1, },
+  {figure_number: 2, },
+  {figure_number: 3, },
+  {figure_number: 4, },
+  {figure_number: 5, },
+  {figure_number: 6, },
 ];
 
 var training_score_feedback_stimuli = [
   // {figure_number: 1, },
   {figure_number: 1, },
   {figure_number: 2, },
-  // {figure_number: 3, },
+  {figure_number: 3, },
 ];
 
 var test_stimuli = [
   // {figure_number: 1, },
-  // {figure_number: 1, },
-  // {figure_number: 2, },
+  {figure_number: 1, },
+  {figure_number: 2, },
   {figure_number: 3, },
-  {figure_number: 4, },
-  {figure_number: 5, },
-  {figure_number: 6, } },
 ];
 
 // -------- psychophysical scale ---------
@@ -390,7 +387,7 @@ var training_all_feedback_procedure = {
           // type: 'without-replacement',
           type: 'with-replacement',
           // number of trials of the procedure
-          size: 1,
+          size: 3,
   }
 };
 
@@ -408,7 +405,7 @@ var training_score_feedback_procedure = {
           // without replacement: once a figure is picked, it cannot be picked again
           type: 'without-replacement',
           // number of trials of the procedure
-          size: 2,
+          size: 3,
   }
 };
 
