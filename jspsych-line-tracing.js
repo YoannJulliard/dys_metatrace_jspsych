@@ -284,7 +284,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
     	ctx = canvas.getContext('2d');
 
       //remove the mouse cursor display
-    	//canvas.style.cursor = 'none';
+    	canvas.style.cursor = 'none';
 
     	//load the image to trace
     	var imageObj = new Image();
@@ -442,9 +442,9 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
 
     				//display "you have finished the task"
             if(final_score_feedback == true) {
-      				document.getElementById("status").innerHTML = trial.end_instructions + `<p class = "custom-font">Voici ton score : ` + Math.round(score) + `</p><p class = "continue-instructions">Cliques sur la flèche pour continuer</p>`;
+      				document.getElementById("status").innerHTML = trial.end_instructions + `<p class = "custom-font">Voici ton score : ` + Math.round(score) + `</p><p class = "continue-instructions">Clique sur la flèche pour continuer</p>`;
             } else {
-              document.getElementById("status").innerHTML = trial.end_instructions + `<p class = "custom-font">&nbsp;</p><p class = "continue-instructions">Cliques sur la flèche pour continuer</p>`;
+              document.getElementById("status").innerHTML = trial.end_instructions + `<p class = "custom-font">&nbsp;</p><p class = "continue-instructions">Clique sur la flèche pour continuer</p>`;
             }
     			}
     		}

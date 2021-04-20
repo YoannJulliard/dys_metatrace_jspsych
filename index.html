@@ -30,6 +30,26 @@
 
   <script>
 
+/* Preload images */
+  var preloadimages = ['img/milo_hello.gif',
+                       'img/milo_showing_right.png',
+                       'img/instructions1.png',
+                       'img/instructions1bis.png',
+                       'img/instructions2bis.png',
+                       'img/instructions3.png',
+                       'img/instructions4.png',
+                       'img/instructions5.png',
+                       'img/milo_showing_points.png',
+                       'img/level1.png',
+                       'img/level2.png',
+                       'img/level3.png',
+                       'img/conf_scale_0.png',
+                       'img/conf_scale_1.png',
+                       'img/conf_scale_2.png',
+                       'img/conf_scale_3.png',
+                       'img/conf_scale_4.png',
+                       'img/win.png',
+                       ];
 
 
 /* welcome message */
@@ -89,7 +109,8 @@
           type: "html-button-response",
           choices: ["&#10095;"],
           stimulus: `
-          <p class = "custom-font">Plus tu resteras sur les lignes du dessin, plus tu gagneras des points.</p>
+          <p class = "custom-font">Lorsque tu restes sur les lignes du dessin, ton tracé est vert, et tu gagnes des points.</p>
+          <p class = "custom-font">Lorsque tu sors des lignes du dessin, ton tracé est rouge, et tu perds des points.</p>
           <p class = "custom-font">Le but est de gagner le plus de points possible.</p>
           <img src = "img/instructions3.png", height="200", width="250">
           <img src = "img/milo_showing_points.png", height="150", width="150">
@@ -151,8 +172,8 @@
           choices: ["&#10095;"],
           stimulus: `
           <p class = "custom-font"> A partir de maintenant, le jeu va se compliquer ! </p>
-          <p class = "custom-font"> Tu ne verras plus où tu es en train de dessiner ! </p>
-          <p class = "custom-font"> Essaies de rester le plus possible sur les lignes ! </p>
+          <p class = "custom-font"> Tu ne verras plus où tu es en train de dessiner mais tu verras la souris ! </p>
+          <p class = "custom-font"> Essaies de rester le plus possible sur les lignes pour marquer des points ! </p>
           <img src = "img/instructions4.png", height="193", width="270">
           <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
           `,
@@ -163,8 +184,8 @@
           type: "html-button-response",
           choices: ["&#10095;"],
           stimulus: `
-          <p class = "custom-font"> A partir de maintenant, le jeu va se compliquer ! </p>
-          <p class = "custom-font"> Tu ne verras plus où tu es en train de dessiner, et tu ne verras plus non plus ton score ! </p>
+          <p class = "custom-font"> A partir de maintenant, le jeu va encore se compliquer ! </p>
+          <p class = "custom-font"> Tu ne verras plus où tu es en train de dessiner, ni la souris ! </p>
           <p class = "custom-font"> Essaies de rester le plus possible sur les lignes ! </p>
           <img src = "img/instructions5.png", height="180", width="270">
           <p class = "continue-instructions">Appuies sur la flèche pour commencer le jeu.</p>
@@ -202,7 +223,6 @@ var test_stimuli = [
 ];
 
 // -------- psychophysical scale ---------
-// -------------FAILED--------------------
 
 // Defining the psychophysical scale
 var n_consecutive_success = 0;
@@ -298,7 +318,6 @@ var test_phase = {
       },
       on_finish: function(data) {
         chosen_score = choices_01[data.response];
-        chosen_score1 = chosen_score + 1;
 
         if (Math.round(data_score) == chosen_score) {
           var success = true;
@@ -327,25 +346,26 @@ var test_phase = {
         };
 
       },
-      // end test 2
     };
 
-    var test = {
-      type: 'html-button-response',
-      stimulus: `
-      <p class = "custom-font"> Je vais maintenant te montrer deux scores : un seul des deux est le tien.</p>
-      <p class = "custom-font">A ton avis, lequel est le tien ? Clique dessus !</p>
-      `,
-      choices: [,],
-      prompt: "<p></p>",
-      on_start: function(test) {
-        test.choices[0] = n_consecutive_success;
-        test.choices[1] = figure_difficulty;
-      },
-    };
+    // var test = {
+    //   type: 'html-button-response',
+    //   stimulus: `
+    //   <p class = "custom-font"> Je vais maintenant te montrer deux scores : un seul des deux est le tien.</p>
+    //   <p class = "custom-font">A ton avis, lequel est le tien ? Clique dessus !</p>
+    //   `,
+    //   choices: [,],
+    //   prompt: "<p></p>",
+    //   on_start: function(test) {
+    //     test.choices[0] = n_consecutive_success;
+    //     test.choices[1] = figure_difficulty;
+    //   },
+    // };
 
 
 /* Confidence scale */
+
+    //scale
     var scale = [
       "<p class = 'custom-scale'>0 <br> Pas du tout sûr(e) <br><br> <img src = 'img/conf_scale_0.png', height = 50px, width = 50px></p>",
       "<p class = 'custom-scale'>1 <br> <br><br> <img src = 'img/conf_scale_1.png', height = 50px, width = 50px></p>",
@@ -355,7 +375,7 @@ var test_phase = {
       // "<img src = "img/confidence_scale.png", height="600", width="200">",
     ];
 
-    //confidence training
+    //confidence scale
     var confidence = {
       type: 'survey-likert',
       questions: [
@@ -394,7 +414,6 @@ var training_all_feedback_procedure = {
 // 2: training phase with score feedback only (no visual feedback)
 var training_score_feedback_procedure = {
   timeline: [
-    instructions_score_feedback,
     training_score_feedback,
     twoafc,
     confidence,
@@ -412,7 +431,6 @@ var training_score_feedback_procedure = {
 // 3: test phase : without feedback
 var test_procedure = {
   timeline: [
-    instructions_test,
     test_phase,
     twoafc,
     confidence,
@@ -498,8 +516,10 @@ var test_procedure = {
                   instructions_3,
                   training_all_feedback_procedure,
                   level2,
+                  instructions_score_feedback,
                   training_score_feedback_procedure,
                   level3,
+                  instructions_test,
                   test_procedure,
                   end_task,
                   age,
@@ -513,6 +533,7 @@ var test_procedure = {
   /* start the experiment */
       jsPsych.init({
         timeline: timeline,
+        preload_images: preloadimages,
         show_progress_bar : true,
         on_finish: function(){
           jsPsych.data.displayData();
