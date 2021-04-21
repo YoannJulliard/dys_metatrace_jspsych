@@ -197,35 +197,35 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
 
     var materials = {
       'file_names' : [
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s0e.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s15e.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s30e.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s45e.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s45h.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/s0e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/s15e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/s30e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/s45e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/s45h.png",
           //5
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s75e.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s75h.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s0h.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/q4e.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/q1e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/s75e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/s75h.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/s0h.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/q4e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/q1e.png",
           //10
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/q2e.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/q3e.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/test15px.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/test30px.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/test45px.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/q2e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/q3e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/test15px.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/test30px.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/test45px.png",
           //15
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/test60px.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/test75px.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/test60px.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/test75px.png",
 
 
         ],
 
-        //							 0												5												 10
+        //							 0												5												  10
             'xstarts' : [57,  331, 55,  349, 136, 206, 128, 57,  92,  360,  36,  232, 250, 250, 250, 250, 250],
-            'ystarts' : [146, 141, 46,  218, 218, 292, 292, 146, 283, 8,    69,  223, 187, 187, 187, 187, 187],
-            'xends' :   [358, 41,  314, 135, 345, 128, 206, 358, 158, 51,   40,  28, 490, 490, 490, 490, 490],
-            'yends' :   [146, 63,  195, 6,   6,   2,   2,   146, 26,  152,  270, 39, 187, 187, 187, 187, 187]
+            'ystarts' : [146, 141, 46,  218, 218, 292, 292, 146, 283, 8,    69,  223, 250, 250, 250, 250, 250],
+            'xends' :   [358, 41,  314, 135, 345, 128, 206, 358, 158, 51,   40,  28,  490, 490, 490, 490, 490],
+            'yends' :   [146, 63,  195, 6,   6,   2,   2,   146, 26,  152,  270, 39,  250, 250, 250, 250, 250]
     		}
 
 
