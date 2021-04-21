@@ -128,7 +128,7 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
 
     var html = '<div id="jspsych-html-button-response-stimulus">'+trial.stimulus+'</div>';
 
-    html += '<div id="sketch"><canvas id="paint" width="400" height="300" style="border:1px solid #000000;"></canvas> </div>' +
+    html += '<div id="sketch"><canvas id="paint" width="500" height="500" style="border:1px solid #000000;"></canvas> </div>' +
                 '<div id="status"></div>';
 
     // helper to show buttons
@@ -211,21 +211,28 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
           //10
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q2e.png",
           "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q3e.png",
+          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/test15px.png",
+          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/test30px.png",
+          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/test45px.png",
+          //15
+          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/test60px.png",
+          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/test75px.png",
+
 
         ],
 
         //							 0												5												 10
-            'xstarts' : [57,  331, 55,  349, 136, 206, 128, 57,  92,  360,  36,  232],
-            'ystarts' : [146, 141, 46,  218, 218, 292, 292, 146, 283, 8,    69,  223],
-            'xends' :   [358, 41,  314, 135, 345, 128, 206, 358, 158, 51,   40,  28],
-            'yends' :   [146, 63,  195, 6,   6,   2,   2,   146, 26,  152,  270, 39]
+            'xstarts' : [57,  331, 55,  349, 136, 206, 128, 57,  92,  360,  36,  232, 250, 250, 250, 250, 250],
+            'ystarts' : [146, 141, 46,  218, 218, 292, 292, 146, 283, 8,    69,  223, 187, 187, 187, 187, 187],
+            'xends' :   [358, 41,  314, 135, 345, 128, 206, 358, 158, 51,   40,  28, 490, 490, 490, 490, 490],
+            'yends' :   [146, 63,  195, 6,   6,   2,   2,   146, 26,  152,  270, 39, 187, 187, 187, 187, 187]
     		}
 
 
 
     	//image dimensions
-    	var mywidth = 400;
-    	var myheight = 300;
+    	var mywidth = 500;
+    	var myheight = 500;
 
     	var score = 0;
     	var timeDiff = 0;
