@@ -197,26 +197,26 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
 
     var materials = {
       'file_names' : [
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s0e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s15e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s30e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s45e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s45h.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s0e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s15e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s30e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s45e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s45h.png",
           //5
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s75e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s75h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/s0h.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q4e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q1e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s75e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s75h.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/s0h.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/q4e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/q1e.png",
           //10
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q2e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/q3e.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/test15px.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/test30px.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/test45px.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/q2e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/q3e.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/test15px.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/test30px.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/test45px.png",
           //15
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/test60px.png",
-          "https://raw.githubusercontent.com/LiseBrun/mirror_trace/master/figures/test75px.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/test60px.png",
+          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/master/figures/test75px.png",
 
 
         ],
