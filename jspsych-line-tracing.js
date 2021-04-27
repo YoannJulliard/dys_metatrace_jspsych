@@ -213,19 +213,18 @@ jsPsych.plugins["jspsych-line-tracing"] = (function() {
           "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/q3e.png",
           "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/test15px.png",
           "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/test30px.png",
-          "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/test45px.png",
-          //15
           "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/test60px.png",
+          //15
           "https://raw.githubusercontent.com/LiseBrun/dys_metatrace_jspsych/main/figures/test75px.png",
 
 
         ],
 
-        //							 0												5												  10
-            'xstarts' : [57,  331, 55,  349, 136, 206, 128, 57,  92,  360,  36,  232, 250, 250, 250, 250, 250],
-            'ystarts' : [146, 141, 46,  218, 218, 292, 292, 146, 283, 8,    69,  223, 250, 250, 250, 250, 250],
-            'xends' :   [358, 41,  314, 135, 345, 128, 206, 358, 158, 51,   40,  28,  490, 490, 490, 490, 490],
-            'yends' :   [146, 63,  195, 6,   6,   2,   2,   146, 26,  152,  270, 39,  250, 250, 250, 250, 250]
+        //							 0												5												  10                       15
+            'xstarts' : [57,  331, 55,  349, 136, 206, 128, 57,  92,  360,  36,  232, 250, 250, 250, 250],
+            'ystarts' : [146, 141, 46,  218, 218, 292, 292, 146, 283, 8,    69,  223, 250, 250, 250, 250],
+            'xends' :   [358, 41,  314, 135, 345, 128, 206, 358, 158, 51,   40,  28,  490, 490, 490, 490],
+            'yends' :   [146, 63,  195, 6,   6,   2,   2,   146, 26,  152,  270, 39,  250, 250, 250, 250]
     		}
 
 

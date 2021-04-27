@@ -1,4 +1,5 @@
 library(tidyverse)
+#install.packages("dplyr")
 library(glue)
 
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
@@ -29,10 +30,13 @@ ggplot() +
 
 # Looping the procedure for various sizes and x2 coordinate
 
+#thickness of line (10 level of difficulty)
 size_seq <- seq(1, 5, by = 0.5)
+#coordinates of start point: always in center
 x1 <- 0
-x2_seq <- seq(0, 360, by = 10)
 y1 <- 0
+#coordinates of end point: keep the same lenght but with different orientations
+x2_seq <- seq(0, 360, by = 10)
 y2 <- 100
 
 for (size in size_seq) {
